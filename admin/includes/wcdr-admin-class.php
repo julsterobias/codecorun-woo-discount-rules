@@ -95,6 +95,8 @@ class wcdr_admin_class extends wcdr_common_class
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
             return;
 
+        if(!isset($_POST['wcdr_field']))
+            return;
 
         $coupon_rules = $_POST['wcdr_field'];
 

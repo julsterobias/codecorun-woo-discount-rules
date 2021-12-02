@@ -139,7 +139,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'value',
-                            value: value[0]
+                            value: (value)? value[0] : value
                         }
                         
                     ]
@@ -174,7 +174,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'value',
-                            value: value[1]
+                            value: (value)? value[1] : value
                         }
                         
                     ]
@@ -219,6 +219,12 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
             break;
         case 'count':
 
+            var c_value = [];
+            for(var v in value){
+                c_value.push(value[v]);
+            }
+        
+            var count_uid = wcdr_unique_name();
             var parent = wcdr_elementor__(
                 {
                     type: 'div',
@@ -230,10 +236,6 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         {
                             attr: 'data-rule-type',
                             value: rule
-                        },
-                        {
-                            attr: 'value',
-                            value: value
                         }
                     ]
                 }
@@ -243,6 +245,37 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                 {
                     type: 'label',
                     text: wcdr_label_factory.items_in_cart
+                }
+            );
+
+            var el_num_condition = wcdr_elementor__(
+                {
+                    type: 'select',
+                    attributes: [
+                        {
+                            attr: 'class',
+                            value: 'wcdr_number_condition'
+                        },
+                        {
+                            attr: 'name',
+                            value: 'wcdr_field[\'count-'+count_uid+'\'][\'condition\']'
+                        }
+                    ],
+                    options: [
+                        {
+                            text: wcdr_label_factory.less_than_equal,
+                            value: 'less_than_equal'
+                        },
+                        {
+                            text: wcdr_label_factory.greater_than_equal,
+                            value: 'greater_than_equal'
+                        },
+                        {
+                            text: wcdr_label_factory.equal,
+                            value: 'equal'
+                        }
+                    ],
+                    value: (c_value.length > 0)? c_value[0] : value
                 }
             );
 
@@ -264,21 +297,29 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'count-'+wcdr_unique_name()+'\']'
+                            value: 'wcdr_field[\'count-'+count_uid+'\'][\'value\']'
                         },
                         {
                             attr: 'value',
-                            value: value
+                            value: (c_value.length > 0)? c_value[1] : value
                         }
                     ]
                 }
             );
+            el_label.appendChild(el_num_condition);
             el_label.appendChild(el_count);
             parent.appendChild(el_label);
             jQuery(wcdr_rule_canvas).append(parent);
             wcdr_create_conditions(parent);
             break;
         case 'amount':
+
+            var a_value = [];
+            for(var v in value){
+                a_value.push(value[v]);
+            }
+
+            var amount_uid = wcdr_unique_name();
             var parent = wcdr_elementor__(
                 {
                     type: 'div',
@@ -302,6 +343,37 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                 }
             );
 
+            var el_num_condition = wcdr_elementor__(
+                {
+                    type: 'select',
+                    attributes: [
+                        {
+                            attr: 'class',
+                            value: 'wcdr_number_condition'
+                        },
+                        {
+                            attr: 'name',
+                            value: 'wcdr_field[\'amount-'+amount_uid+'\'][\'condition\']'
+                        }
+                    ],
+                    options: [
+                        {
+                            text: wcdr_label_factory.less_than_equal,
+                            value: 'less_than_equal'
+                        },
+                        {
+                            text: wcdr_label_factory.greater_than_equal,
+                            value: 'greater_than_equal'
+                        },
+                        {
+                            text: wcdr_label_factory.equal,
+                            value: 'equal'
+                        }
+                    ],
+                    value: (a_value.length > 0)? a_value[0] : value
+                }
+            );
+
             var el_count = wcdr_elementor__(
                 {
                     type: 'input',
@@ -320,15 +392,16 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'amount-'+wcdr_unique_name()+'\']'
+                            value: 'wcdr_field[\'amount-'+amount_uid+'\'][\'value\']'
                         },
                         {
                             attr: 'value',
-                            value: value
+                            value: (a_value)? a_value[1] : value
                         }
                     ]
                 }
             );
+            el_label.appendChild(el_num_condition);
             el_label.appendChild(el_count);
             parent.appendChild(el_label);
             jQuery(wcdr_rule_canvas).append(parent);
@@ -362,6 +435,10 @@ function wcdr_elementor__(args = new Object){
                 var option = document.createElement('option');
                 option.value = args.options[y].value;
                 option.text = args.options[y].text;
+                
+                if(args.value == args.options[y].value){
+                    option.defaultSelected = true;
+                }
                 element.appendChild(option);
             }
         }

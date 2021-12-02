@@ -45,23 +45,23 @@ class wcdr_common_class
 			'wcdr-rules',
 			[
 				'lite_version' => [
-					'date' => __('Date'),
-					'date-range' => __('Date Range'),
-					'include' => __('Include'),
-					'exclude' => __('Exclude'),
-					'count' => __('Number of item(s) in cart'),
-					'amount' => __('Total Amount')
+					'date' => __('Date',WCDR_PREFIX),
+					'date-range' => __('Date Range',WCDR_PREFIX),
+					'include' => __('Include',WCDR_PREFIX),
+					'exclude' => __('Exclude',WCDR_PREFIX),
+					'count' => __('Number of item(s) in cart',WCDR_PREFIX),
+					'amount' => __('Total Amount',WCDR_PREFIX)
 				],
 				'pro_version' => [
-					'include_category' => __('Include Category'),
-					'exclude_category' => __('Exclude Category'),
-					'country' => __('Country'),
-					'first_order' => __('First Order'),
-					'nth_order' => __('User\'s (n)th order'),
-					'previous_orders' => __('User has number of previous order(s)'),
-					'metas' => __('User has meta(s)'),
-					'role' => __('User has role(s)'),
-					'url_param' => __('URL has parameter(s)')
+					'include_category' => __('Include Category',WCDR_PREFIX),
+					'exclude_category' => __('Exclude Category',WCDR_PREFIX),
+					'country' => __('Country',WCDR_PREFIX),
+					'first_order' => __('First Order',WCDR_PREFIX),
+					'nth_order' => __('User\'s (n)th order',WCDR_PREFIX),
+					'previous_orders' => __('User has number of previous order(s)',WCDR_PREFIX),
+					'metas' => __('User has meta(s)',WCDR_PREFIX),
+					'role' => __('User has role(s)',WCDR_PREFIX),
+					'url_param' => __('URL has parameter(s)',WCDR_PREFIX)
 				]
 			]
 		);
@@ -71,24 +71,28 @@ class wcdr_common_class
 	{
 		return apply_filters(
 			'wcdr-labels',[
-				'date' => __('Date'),
-				'date_range' => __('Date Range'),
-				'from' => __('From'),
-				'to' => __('Include'),
-				'include' => __('Include'),
-				'exclude' => __('Exclude'),
-				'product' => __('Product'),
-				'select_product' => __('Select Product'),
-				'items_in_cart' => __('Number of item(s) in cart'),
-				'total_amount' => __('Total amount in the cart'),
-				'or' => __('Or'),
-				'and' => __('And'),
-				'condition' => __('Condition'),
-				'confirm_rule' => __('Are you sure you want to remove this rule?'),
-				'confirm_product' => __('Are you sure you want to remove this product?'),
-				'remove' => 'Remove'
+				'date' => __('Date',WCDR_PREFIX),
+				'date_range' => __('Date Range',WCDR_PREFIX),
+				'from' => __('From',WCDR_PREFIX),
+				'to' => __('Include',WCDR_PREFIX),
+				'include' => __('Include',WCDR_PREFIX),
+				'exclude' => __('Exclude',WCDR_PREFIX),
+				'product' => __('Product',WCDR_PREFIX),
+				'select_product' => __('Select Product',WCDR_PREFIX),
+				'items_in_cart' => __('Number of item(s) in cart',WCDR_PREFIX),
+				'total_amount' => __('Total amount in the cart',WCDR_PREFIX),
+				'or' => __('Or',WCDR_PREFIX),
+				'and' => __('And',WCDR_PREFIX),
+				'condition' => __('Condition',WCDR_PREFIX),
+				'confirm_rule' => __('Are you sure you want to remove this rule?',WCDR_PREFIX),
+				'confirm_product' => __('Are you sure you want to remove this product?',WCDR_PREFIX),
+				'remove' => __('Remove',WCDR_PREFIX),
+				'less_than_equal' => __('Less than and equal',WCDR_PREFIX),
+				'greater_than_equal' => __('Greater than and equal',WCDR_PREFIX),
+				'equal' => __('Equal',WCDR_PREFIX)
 			]
 		);
 	}
+
 }
 ?>

@@ -35,6 +35,13 @@ spl_autoload_register(function ($class) {
 
 add_action('plugins_loaded','thsa_wcdr_init');
 function thsa_wcdr_init(){
-	new wcdr\admin\wcdr_admin_class();
+	if(current_user_can('administrator')){
+		//load admin class
+		new wcdr\admin\wcdr_admin_class();
+	}
+	
+	//load global class
+	new \wcdr\main\wcdr_main_class();
+	
 }
 ?>
