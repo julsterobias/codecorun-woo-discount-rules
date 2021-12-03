@@ -76,7 +76,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'date-'+wcdr_unique_name()+'\']'
+                            value: 'wcdr_field[date-'+wcdr_unique_name()+']'
                         },
                         {
                             attr: 'value',
@@ -135,7 +135,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'date_range-'+field_id+'\'][\'from\']'
+                            value: 'wcdr_field[date_range-'+field_id+'][from]'
                         },
                         {
                             attr: 'value',
@@ -170,7 +170,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'date_range-'+field_id+'\'][\'to\']'
+                            value: 'wcdr_field[date_range-'+field_id+'][to]'
                         },
                         {
                             attr: 'value',
@@ -258,7 +258,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'count-'+count_uid+'\'][\'condition\']'
+                            value: 'wcdr_field[count-'+count_uid+'][condition]'
                         }
                     ],
                     options: [
@@ -297,7 +297,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'count-'+count_uid+'\'][\'value\']'
+                            value: 'wcdr_field[count-'+count_uid+'][value]'
                         },
                         {
                             attr: 'value',
@@ -353,7 +353,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'amount-'+amount_uid+'\'][\'condition\']'
+                            value: 'wcdr_field[amount-'+amount_uid+'][condition]'
                         }
                     ],
                     options: [
@@ -392,7 +392,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[\'amount-'+amount_uid+'\'][\'value\']'
+                            value: 'wcdr_field[amount-'+amount_uid+'][value]'
                         },
                         {
                             attr: 'value',
@@ -528,7 +528,7 @@ function wcdr_generate_added_el_to_list(list_parent, type, product, product_text
                     },
                     {
                         attr: 'name',
-                        value: 'wcdr_field[\''+type+'-'+child_table+'\'][]'
+                        value: 'wcdr_field['+type+'-'+child_table+'][]'
                     }
                 ]
             }
@@ -615,7 +615,7 @@ function wcdr_create_conditions(obj){
                 },
                 {
                     attr: 'name',
-                    value: 'wcdr_field[\'condition-'+wcdr_unique_name()+'\']'
+                    value: 'wcdr_field[condition-'+wcdr_unique_name()+']'
                 }
             ],
             options: [
@@ -786,8 +786,7 @@ function wcdr_load_saved_rules()
     var condition_holder = [];
 
     for(var x_ in wcdr_get_saved_rules){
-        var new_x = x_.replaceAll("'", "");
-        var type = new_x.split('-');
+        var type = x_.split('-');
         if(type.length > 0){
 
             if(type[0] == 'include' || type[0] == 'exclude'){
