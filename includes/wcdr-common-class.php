@@ -89,7 +89,8 @@ class wcdr_common_class
 				'remove' => __('Remove',WCDR_PREFIX),
 				'less_than_equal' => __('Less than and equal',WCDR_PREFIX),
 				'greater_than_equal' => __('Greater than and equal',WCDR_PREFIX),
-				'equal' => __('Equal',WCDR_PREFIX)
+				'equal' => __('Equal',WCDR_PREFIX),
+				'less_than' => __('Less than',WCDR_PREFIX)
 			]
 		);
 	}
