@@ -3,8 +3,8 @@
  * 
  * Plugin Name: Woo Coupon Discount Rules
  * Description: Woocommerce coupon extension to set single or multiple rules for coupon discount
- * Author:      wolfplug
- * Plugin Type: Functionality
+ * Author:      Codecorun
+ * Plugin Type: Extension
  * Version: 1.0
  * 
  * 

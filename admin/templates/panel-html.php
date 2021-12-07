@@ -47,9 +47,9 @@
                     <?php echo _e('Woo Coupon Discount Rules &copy; '.date('Y').' all rights reserved'); ?>
                 </li>
                 <li>
-                    <a href=""><?php _e('Documentation'); ?></a>&nbsp;
-                    <!-- <a href="">Support</a>&nbsp; -->
-                    <a href=""><?php _e('Feature Request'); ?></a>&nbsp;
+                    <!-- <a href=""><?php _e('Documentation'); ?></a>&nbsp; -->
+                    <a href="mail:codecorun@gmail.com">Support</a>&nbsp;
+                    <!-- <a href=""><?php _e('Feature Request'); ?></a>&nbsp; -->
                     <a href=""><b><?php _e('Pro Version'); ?></b></a>
                 </li>
             </ul>

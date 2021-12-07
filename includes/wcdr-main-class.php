@@ -12,8 +12,14 @@ defined( 'ABSPATH' ) or die( 'No access area' );
 class wcdr_main_class{
 
     private static $instance = null;
-    private $rules = '';
 
+    /**
+     * 
+     * factory instance method
+     * @since 1.0
+     * static
+     * 
+     */
     public static function factory()
     {
         if(!self::$instance){
@@ -22,17 +28,31 @@ class wcdr_main_class{
         return self::$instance;
     }
 
+    /**
+     * 
+     * construct
+     * @since 1.0
+     * 
+     */
     public function __construct()
     {
         //render assets
         add_action('template_redirect', [$this, 'apply_coupon']);
     }
 
+    /**
+     * 
+     * get_cart_items
+     * @since 1.0
+     * @param string
+     * @return mixed
+     * 
+     */
     public function get_cart_items($args)
     {
         if(empty($args))
             return;
-        //do not include the bundled items
+        
         global $woocommerce;
 
         switch($args){
@@ -42,12 +62,45 @@ class wcdr_main_class{
             case 'amount':
                 return $woocommerce->cart->total;
                 break;
+            case 'count':
+                $items = $woocommerce->cart->get_cart();
+                $chained_products = [];
+                foreach($items as $item){
+                   $chained_products[] = get_post_meta($item['data']->get_id(),'_chained_product_ids',true);
+                }
+                //do not include the bundled items
+                $items_count = 0;
+                foreach($items as $item){
+                    $not_chained = false;
+                    foreach($chained_products as $chained){
+                        if(is_array($chained)){
+                            if(in_array($item['data']->get_id(),$chained)){
+                                $not_chained = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(!$not_chained){
+                        $items_count++;
+                    }
+                }
+                return $items_count;
+                break;
             default:
                 return $woocommerce->cart;  
                 break;
         }
  
     }
+
+    /**
+     * 
+     * apply_coupon
+     * @since 1.0
+     * @param none
+     * @return none
+     * 
+     */
 
     public function apply_coupon()
     {
@@ -74,10 +127,16 @@ class wcdr_main_class{
             $coupons = get_posts($args);
             if($coupons){
                 //get meta
-
+                $cond_collections = [];
                 foreach($coupons as $coupon){
-                    $cond_value = [];
 
+                    //remove added coupons
+                    if(in_array( $coupon->post_name, WC()->cart->get_applied_coupons())){
+                        WC()->cart->remove_coupon( $coupon->post_name );
+                        WC()->cart->calculate_totals();
+                    }
+
+                    $cond_value = [];
                     $rules = get_post_meta($coupon->ID,'wcdr-coupon-rules',true);
                     if($rules){
                         foreach($rules as $rule_index => $rule){
@@ -145,27 +204,45 @@ class wcdr_main_class{
  
                     }
 
+                    $cond_collections[$coupon->ID] = $cond_value;
 
-                    $cond_value = implode(' ',$cond_value);
+                }
+
+
+                foreach($cond_collections as $collection){
+                    $cond_value = implode(' ',$collection);
                     //execute
                     $cond_value = "\$apply_coupon_ = (".$cond_value.");";
                     eval($cond_value);
                     if($apply_coupon_){
                         //yes apply coupon
                         //get coupon details
-                    }else{
-                        //remove coupon
-                        //get coupon details
+                        $coupon_ = new \WC_Coupon($coupon->post_name);
+                        //Why this is not working???
+                        //$WC_Discounts = new \WC_Discounts();
+                        //$WC_Discounts->is_coupon_valid( $coupon_ )
+
+                        //deprecated watch for the day they will remove this
+                        if($coupon_->is_valid()){
+                            //implement discounts
+                            WC()->cart->add_discount( $coupon->post_name );
+                        }
                     }
-
                 }
-
                
             }
            
         }
     }
 
+    /**
+     * 
+     * check_include_exclude
+     * @since 1.0
+     * @param array
+     * @return int
+     * 
+     */
     public function check_include_exclude($args = [])
     {
         if(empty($args['rule']))
@@ -213,6 +290,14 @@ class wcdr_main_class{
 
     }
 
+    /**
+     * 
+     * check_today
+     * @since 1.0
+     * @param array
+     * @return int
+     * 
+     */
     public function check_today($args = [])
     {
        
@@ -234,6 +319,14 @@ class wcdr_main_class{
         }
     }
 
+    /**
+     * 
+     * check_count_amount
+     * @since 1.0
+     * @param array
+     * @return int
+     * 
+     */
     public function check_count_amount($args = [])
     {
         if(empty($args))
@@ -241,7 +334,7 @@ class wcdr_main_class{
 
 
         if($args['type'] == 'count'){
-            $in_rule_value = count($this->get_cart_items('items'));
+            $in_rule_value = $this->get_cart_items('count');
         }else{
             $in_rule_value = $this->get_cart_items('amount');
         }

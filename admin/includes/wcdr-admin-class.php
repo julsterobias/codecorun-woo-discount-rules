@@ -13,6 +13,14 @@ defined( 'ABSPATH' ) or die( 'No access area' );
 class wcdr_admin_class extends wcdr_common_class
 {
 
+    /**
+     * 
+     * constructor
+     * @since 1.0
+     * @param
+     * @return
+     * 
+     */
     public function __construct()
     {
         add_filter( 'woocommerce_coupon_data_tabs', [$this,'rules_tab'], 10 , 1 );
@@ -23,6 +31,14 @@ class wcdr_admin_class extends wcdr_common_class
         add_action('save_post_shop_coupon', [$this,'save_coupon']);
     }
 
+    /**
+     * 
+     * assets
+     * @since 1.0
+     * @param
+     * @return
+     * 
+     */
     public function assets()
     {   
         //load css
@@ -35,7 +51,14 @@ class wcdr_admin_class extends wcdr_common_class
         wp_localize_script( WCDR_PREFIX.'-admin-assets-js', 'wcdr_label_factory', $this->translatable_text());   
     }
 
-
+    /**
+     * 
+     * rules_tab
+     * @since 1.0
+     * @param array
+     * @return array
+     * 
+     */
     public function rules_tab( $product_data_tabs ) {
         $product_data_tabs['wcdr-discount-rules'] = [
             'label' => 'Discount Rules',
@@ -45,6 +68,14 @@ class wcdr_admin_class extends wcdr_common_class
         return $product_data_tabs;
     }
 
+    /**
+     * 
+     * rules_html
+     * @since 1.0
+     * @param
+     * @return
+     * 
+     */
     public function rules_html()
     {
         global $post;
@@ -53,6 +84,14 @@ class wcdr_admin_class extends wcdr_common_class
         $this->set_template('panel-html',['other' => 'admin', 'rules' => $rules, 'save_rules' => json_encode($get_rules)]);
     }
 
+    /**
+     * 
+     * get_woo_products
+     * @since 1.0
+     * @param
+     * @return json
+     * 
+     */
     public function get_woo_products()
     {
        
@@ -86,6 +125,14 @@ class wcdr_admin_class extends wcdr_common_class
         
     }
 
+    /**
+     * 
+     * save_coupon
+     * @since 1.0
+     * @param int
+     * @return
+     * 
+     */
     public function save_coupon($post_id){
         // I will resume here.
         // Save the data in serialize array format

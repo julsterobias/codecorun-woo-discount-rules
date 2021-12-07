@@ -11,7 +11,15 @@ defined( 'ABSPATH' ) or die( 'No access area' );
 
 class wcdr_common_class
 {
-    public function set_template($file, $params = array())
+	/**
+	 * 
+	 * set_template
+	 * @since 1.0
+	 * @param string, array
+	 * @return none
+	 * 
+	 */
+    public function set_template($file, $params = [])
     {
         if(!$file)
 			return;
@@ -39,6 +47,15 @@ class wcdr_common_class
 		}
     }
 
+	/**
+	 * 
+	 * rules
+	 * @since 1.0
+	 * @param
+	 * @return array
+	 * 
+	 */
+
 	public static function rules()
 	{
 		return apply_filters(
@@ -47,8 +64,8 @@ class wcdr_common_class
 				'lite_version' => [
 					'date' => __('Date',WCDR_PREFIX),
 					'date-range' => __('Date Range',WCDR_PREFIX),
-					'include' => __('Include',WCDR_PREFIX),
-					'exclude' => __('Exclude',WCDR_PREFIX),
+					'include' => __('Include Product(s)',WCDR_PREFIX),
+					'exclude' => __('Exclude Product(s)',WCDR_PREFIX),
 					'count' => __('Number of item(s) in cart',WCDR_PREFIX),
 					'amount' => __('Total Amount',WCDR_PREFIX)
 				],
@@ -67,6 +84,15 @@ class wcdr_common_class
 		);
 	}
 
+
+	/**
+	 * 
+	 * translatable_text
+	 * @since 1.0
+	 * @param
+	 * @return array
+	 * 
+	 */
 	public static function translatable_text()
 	{
 		return apply_filters(
