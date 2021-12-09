@@ -1,8 +1,8 @@
 <?php
 /** 
  * 
- * Plugin Name: Woo Coupon Discount Rules
- * Description: Woocommerce coupon extension to set single or multiple rules for coupon discount
+ * Plugin Name: Codecorun - Woocommerce Discount Rules
+ * Description: A woocommerce coupon extension plugin that will allows you to set single or murtiple rules with conditional operation.
  * Author:      Codecorun
  * Plugin Type: Extension
  * Version: 1.0
@@ -13,9 +13,19 @@
 defined( 'ABSPATH' ) or die( 'No access area' );
 define('WCDR_API_PATH', plugin_dir_path( __FILE__ ));
 define('WCDR_API_URL', plugin_dir_url( __FILE__ ));
-define('WCDR_FOLDER_NAME','woo-coupon-discount-rules');
+define('WCDR_FOLDER_NAME','codecorun-woo-discount-rules');
 define('WCDR_PREFIX','wcdr');
 define('WCDR_VERSION','1.0');
+
+
+function wcdr_install(){
+	if(class_exists('WooCommerce'))
+		return;
+
+	echo '<h3>'.__('Plugin failed to install', WCDR_PREFIX).'</h3>';
+    @trigger_error(__('This plugin requires woocommerce installation', WCDR_PREFIX), E_USER_ERROR);
+}
+register_activation_hook( __FILE__, 'wcdr_install' );
 
 //autoload classes
 spl_autoload_register(function ($class) {
@@ -30,11 +40,13 @@ spl_autoload_register(function ($class) {
 			include $admin.'includes/'.$filename.'.php';
 		}
 	}
+
 });
 
 
 add_action('plugins_loaded','thsa_wcdr_init');
 function thsa_wcdr_init(){
+	
 	if(current_user_can('administrator')){
 		//load admin class
 		new wcdr\admin\wcdr_admin_class();

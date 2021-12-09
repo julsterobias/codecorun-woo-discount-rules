@@ -204,28 +204,31 @@ class wcdr_main_class{
  
                     }
 
-                    $cond_collections[$coupon->ID] = $cond_value;
+                    $cond_collections[$coupon->ID] = [
+                        'coupon_code' => $coupon->post_name,
+                        'rule' => $cond_value
+                    ];
 
                 }
 
 
                 foreach($cond_collections as $collection){
-                    $cond_value = implode(' ',$collection);
+                    $cond_value = implode(' ',$collection['rule']);
                     //execute
                     $cond_value = "\$apply_coupon_ = (".$cond_value.");";
                     eval($cond_value);
+
                     if($apply_coupon_){
                         //yes apply coupon
                         //get coupon details
-                        $coupon_ = new \WC_Coupon($coupon->post_name);
+                        $coupon_ = new \WC_Coupon($collection['coupon_code']);
                         //Why this is not working???
                         //$WC_Discounts = new \WC_Discounts();
                         //$WC_Discounts->is_coupon_valid( $coupon_ )
-
                         //deprecated watch for the day they will remove this
                         if($coupon_->is_valid()){
                             //implement discounts
-                            WC()->cart->add_discount( $coupon->post_name );
+                            WC()->cart->add_discount( $collection['coupon_code'] );
                         }
                     }
                 }
@@ -304,13 +307,15 @@ class wcdr_main_class{
         if(empty($args))
             return;
 
+        $locatime = explode(' ',current_time( 'mysql' ));
+
         if($args['type'] == 'today'){
-            $today = strtotime(date('Y-m-d'));
+            $today = strtotime($locatime[0]);
             $date = strtotime(date($args['date']));
             $diff = $date - $today;
             return ($diff == 0)? 1 : 0;
         }else{
-            $today = strtotime(date('Y-m-d'));
+            $today = strtotime($locatime[0]);
             $date1 = strtotime(date($args['from']));
             $date2 = strtotime(date($args['to']));
             $diff1 = $date1 - $today;
