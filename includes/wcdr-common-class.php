@@ -72,8 +72,7 @@ class wcdr_common_class
 				'pro_version' => [
 					'include_category' => __('Include Category',WCDR_PREFIX),
 					'exclude_category' => __('Exclude Category',WCDR_PREFIX),
-					'country' => __('Country',WCDR_PREFIX),
-					'first_order' => __('First Order',WCDR_PREFIX),
+					'had_purchased_product' => __('Had Purchased Item(s)',WCDR_PREFIX),
 					'nth_order' => __('User\'s (n)th order',WCDR_PREFIX),
 					'previous_orders' => __('User has number of previous order(s)',WCDR_PREFIX),
 					'metas' => __('User has meta(s)',WCDR_PREFIX),
@@ -113,8 +112,8 @@ class wcdr_common_class
 				'confirm_rule' => __('Are you sure you want to remove this rule?',WCDR_PREFIX),
 				'confirm_product' => __('Are you sure you want to remove this product?',WCDR_PREFIX),
 				'remove' => __('Remove',WCDR_PREFIX),
-				'less_than_equal' => __('Less than and equal',WCDR_PREFIX),
-				'greater_than_equal' => __('Greater than and equal',WCDR_PREFIX),
+				'less_than_equal' => __('Less than or equal',WCDR_PREFIX),
+				'greater_than_equal' => __('Greater than or equal',WCDR_PREFIX),
 				'equal' => __('Equal',WCDR_PREFIX),
 				'less_than' => __('Less than',WCDR_PREFIX)
 			]
