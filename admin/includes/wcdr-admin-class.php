@@ -145,9 +145,6 @@ class wcdr_admin_class extends wcdr_common_class
 
         $coupon_rules = (isset($_POST['wcdr_field']))? $_POST['wcdr_field'] : null;
 
-        if(!$coupon_rules)
-            return;
-
         //let's sanitize
         foreach($coupon_rules as $index => $rules){
             if(!is_array($rules)){

@@ -213,7 +213,37 @@ class wcdr_main_class{
 
 
                 foreach($cond_collections as $collection){
+
+                    //format collection for OR condition to group them together.
+                    foreach($collection['rule'] as $i => $con){
+
+                        if($con == '||'){
+                            $in = $i;
+                            $in--;
+                            $new_val_prev = $collection['rule'][$in];
+
+                            if(is_numeric($new_val_prev))
+                                $new_val_prev = '('.$new_val_prev;
+                            else
+                                $new_val_prev = str_replace(['(',')'],'',$new_val_prev);
+                            
+                            $collection['rule'][$in] = $new_val_prev;
+                            $in_ = $i;
+                            $in_++;
+                            $new_val_nex = $collection['rule'][$in_];
+
+                            if(is_numeric($new_val_nex))
+                                $new_val_nex = $new_val_nex.')';
+                            else
+                                $new_val_nex = str_replace(['(',')'],'',$new_val_nex);
+
+                            $collection['rule'][$in_] = $new_val_nex;
+                        }
+
+                    }
+
                     $cond_value = implode(' ',$collection['rule']);
+
                     //execute
                     $cond_value = "\$apply_coupon_ = (".$cond_value.");";
                     eval($cond_value);

@@ -73,9 +73,8 @@ class wcdr_common_class
 					'include_category' => __('Include Category',WCDR_PREFIX),
 					'exclude_category' => __('Exclude Category',WCDR_PREFIX),
 					'had_purchased_product' => __('Had Purchased Item(s)',WCDR_PREFIX),
-					'nth_order' => __('User\'s (n)th order',WCDR_PREFIX),
-					'previous_orders' => __('User has number of previous order(s)',WCDR_PREFIX),
-					'metas' => __('User has meta(s)',WCDR_PREFIX),
+					'previous_orders' => __('User had number of previous order(s)',WCDR_PREFIX),
+					'metas' => __('User has meta value(s)',WCDR_PREFIX),
 					'role' => __('User has role(s)',WCDR_PREFIX),
 					'url_param' => __('URL has parameter(s)',WCDR_PREFIX)
 				]

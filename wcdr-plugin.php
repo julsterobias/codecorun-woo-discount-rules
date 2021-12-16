@@ -5,7 +5,7 @@
  * Description: A woocommerce coupon extension plugin that will allows you to set single or murtiple rules with conditional operation.
  * Author:      Codecorun
  * Plugin Type: Extension
- * Version: 1.0
+ * Version: 1.0.1
  * 
  * 
 */
@@ -15,7 +15,7 @@ define('WCDR_API_PATH', plugin_dir_path( __FILE__ ));
 define('WCDR_API_URL', plugin_dir_url( __FILE__ ));
 define('WCDR_FOLDER_NAME','codecorun-woo-discount-rules');
 define('WCDR_PREFIX','wcdr');
-define('WCDR_VERSION','1.0');
+define('WCDR_VERSION','1.0.1');
 
 
 function wcdr_install(){
