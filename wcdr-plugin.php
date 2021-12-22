@@ -1,7 +1,7 @@
 <?php
 /** 
  * 
- * Plugin Name: Codecorun - Woocommerce Discount Rules
+ * Plugin Name: Codecorun - WooCommerce Discount Rules
  * Description: A woocommerce coupon extension plugin that will allows you to set single or murtiple rules with conditional operation.
  * Author:      Codecorun
  * Plugin Type: Extension
