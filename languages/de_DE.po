@@ -1,0 +1,287 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Codecorun - WooCommerce Discount Rules Pro\n"
+"POT-Creation-Date: 2021-12-22 19:46+0800\n"
+"PO-Revision-Date: 2021-12-22 19:48+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wcdr-plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/includes/wcdr-admin-class.php:84
+msgid "Discount Rules"
+msgstr "Rabattregeln"
+
+#: admin/includes/wcdr-admin-class.php:306
+#: admin/includes/wcdr-admin-class.php:307
+msgid "Discount Rules Notification"
+msgstr "Benachrichtigung zu Rabattregeln"
+
+#: admin/templates/panel-html.php:7
+msgid "Select Rule"
+msgstr "Regel auswählen"
+
+#: admin/templates/panel-html.php:33
+msgid "No rules available"
+msgstr "Keine Regeln verfügbar"
+
+#: admin/templates/panel-marketing.php:10
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: admin/templates/panel-marketing.php:11
+msgid "Support"
+msgstr "Unterstützung"
+
+#: admin/templates/panel-marketing.php:20
+msgid "Enable discount notification when applied"
+msgstr "Rabattbenachrichtigung aktivieren, wenn angewendet"
+
+#: admin/templates/panel-marketing.php:23
+msgid "Message"
+msgstr "Nachricht"
+
+#: admin/templates/panel-marketing.php:42
+msgid ""
+"To display all applied coupon description add the "
+"[codecorun_wcdr_applied_codes] in your notification message."
+msgstr ""
+"Para mostrar la descripción de todos los cupones aplicados, agregue "
+"[codecorun_wcdr_applied_codes] en su mensaje de notificación."
+
+#: admin/templates/panel-marketing.php:51
+msgid "Center"
+msgstr "Center"
+
+#: admin/templates/panel-marketing.php:57
+msgid "Top"
+msgstr "oben"
+
+#: admin/templates/panel-marketing.php:63
+msgid "Bottom"
+msgstr "Unterseite"
+
+#: admin/templates/panel-marketing.php:70
+msgid "Custom CSS"
+msgstr "Benutzerdefinierte CSS"
+
+#: admin/templates/panel-marketing.php:83
+msgid "Codecorun - Woocommerce Discount Rules &copy; "
+msgstr "Codecorun - Woocommerce-Rabattregeln &copy;"
+
+#: includes/wcdr-common-class.php:66 includes/wcdr-common-class.php:99
+msgid "Date"
+msgstr "Datum"
+
+#: includes/wcdr-common-class.php:67 includes/wcdr-common-class.php:100
+msgid "Date Range"
+msgstr "Datumsbereich"
+
+#: includes/wcdr-common-class.php:68
+msgid "Include Product(s)"
+msgstr "Produkt(e) einschließen"
+
+#: includes/wcdr-common-class.php:69
+msgid "Exclude Product(s)"
+msgstr "Produkt(e) ausschließen"
+
+#: includes/wcdr-common-class.php:70 includes/wcdr-common-class.php:107
+msgid "Number of item(s) in cart"
+msgstr "Anzahl der Artikel im Warenkorb"
+
+#: includes/wcdr-common-class.php:71
+msgid "Total Amount"
+msgstr "Gesamtsumme"
+
+#: includes/wcdr-common-class.php:74
+msgid "Include Category"
+msgstr "Kategorie einschließen"
+
+#: includes/wcdr-common-class.php:75
+msgid "Exclude Category"
+msgstr "Kategorie ausschließen"
+
+#: includes/wcdr-common-class.php:76
+msgid "Had Purchased Item(s)"
+msgstr "Hatte Artikel gekauft"
+
+#: includes/wcdr-common-class.php:77
+msgid "User had number of previous order(s)"
+msgstr "Benutzer hatte Anzahl vorheriger Bestellungen"
+
+#: includes/wcdr-common-class.php:78
+msgid "User has meta value(s)"
+msgstr "Benutzer hat Metawert(e)"
+
+#: includes/wcdr-common-class.php:79
+msgid "User has role(s)"
+msgstr "Benutzer hat Rolle(n)"
+
+#: includes/wcdr-common-class.php:80 includes/wcdr-common-class.php:133
+msgid "URL has parameter(s)"
+msgstr "URL hat Parameter"
+
+#: includes/wcdr-common-class.php:101
+msgid "From"
+msgstr "Von"
+
+#: includes/wcdr-common-class.php:102 includes/wcdr-common-class.php:103
+msgid "Include"
+msgstr "Enthalten"
+
+#: includes/wcdr-common-class.php:104
+msgid "Exclude"
+msgstr "Ausschließen"
+
+#: includes/wcdr-common-class.php:105
+msgid "Product"
+msgstr "Produkt"
+
+#: includes/wcdr-common-class.php:106
+msgid "Select Product"
+msgstr "Ausgewähltes Produkt"
+
+#: includes/wcdr-common-class.php:108
+msgid "Total amount in the cart"
+msgstr "Gesamtbetrag im Warenkorb"
+
+#: includes/wcdr-common-class.php:109
+msgid "Or"
+msgstr "Oder"
+
+#: includes/wcdr-common-class.php:110
+msgid "And"
+msgstr "Und"
+
+#: includes/wcdr-common-class.php:111
+msgid "Condition"
+msgstr "Kondition"
+
+#: includes/wcdr-common-class.php:112
+msgid "Are you sure you want to remove this rule?"
+msgstr "Möchten Sie diese Regel wirklich entfernen?"
+
+#: includes/wcdr-common-class.php:113
+msgid "Are you sure you want to remove this product?"
+msgstr "Möchten Sie dieses Produkt wirklich entfernen?"
+
+#: includes/wcdr-common-class.php:114
+msgid "Remove"
+msgstr "Entfernen"
+
+#: includes/wcdr-common-class.php:115
+msgid "Less than or equal"
+msgstr "Weniger als oder gleich"
+
+#: includes/wcdr-common-class.php:116
+msgid "Greater than or equal"
+msgstr "Größer als oder gleich"
+
+#: includes/wcdr-common-class.php:117
+msgid "Equal"
+msgstr "Gleich"
+
+#: includes/wcdr-common-class.php:118
+msgid "Less than"
+msgstr "Weniger als"
+
+#: includes/wcdr-common-class.php:119
+msgid "Category"
+msgstr "Kategorie"
+
+#: includes/wcdr-common-class.php:120
+msgid "Select Category"
+msgstr "Kategorie wählen"
+
+#: includes/wcdr-common-class.php:121
+msgid "User (n)th order"
+msgstr "Benutzer (n)te Bestellung"
+
+#: includes/wcdr-common-class.php:122
+msgid "Number of previous orders"
+msgstr "Anzahl der vorherigen Bestellungen"
+
+#: includes/wcdr-common-class.php:123
+msgid "User has meta"
+msgstr "Benutzer hat Meta"
+
+#: includes/wcdr-common-class.php:124
+msgid "User has role"
+msgstr "Benutzer hat Rolle"
+
+#: includes/wcdr-common-class.php:125
+msgid "URL as parameter(s)"
+msgstr "URL has parameter(s)"
+
+#: includes/wcdr-common-class.php:126
+msgid "Had Purchased"
+msgstr "Hatte gekauft"
+
+#: includes/wcdr-common-class.php:127
+msgid "Item(s)"
+msgstr "Artikel"
+
+#: includes/wcdr-common-class.php:128
+msgid "Select Role"
+msgstr "Rolle auswählen"
+
+#: includes/wcdr-common-class.php:129
+msgid "Meta Key"
+msgstr "Meta-Schlüssel"
+
+#: includes/wcdr-common-class.php:130
+msgid "Meta Value"
+msgstr "Metawert"
+
+#: includes/wcdr-common-class.php:131
+msgid "User has meta values"
+msgstr "Benutzer hat Metawerte"
+
+#: includes/wcdr-common-class.php:132
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: includes/wcdr-common-class.php:134
+msgid "Parameter key"
+msgstr "Parameterschlüssel"
+
+#: includes/wcdr-common-class.php:135
+msgid "Parameter value"
+msgstr "Parameterwert"
+
+#: wcdr-plugin.php:30
+msgid "This plugin requires woocommerce installation"
+msgstr "Dieses Plugin erfordert die Installation von Woocommerce"
+
+#: wcdr-plugin.php:31
+msgid "Woocommerce plugin is missing"
+msgstr "Woocommerce-Plugin fehlt"
+
+#. Plugin Name of the plugin/theme
+msgid "Codecorun - WooCommerce Discount Rules Pro"
+msgstr "Codecorun - WooCommerce Rabattregeln Pro"
+
+#. Description of the plugin/theme
+msgid ""
+"A woocommerce coupon extension plugin that will allow you to set single or "
+"multiple rules with conditional operation."
+msgstr ""
+"Un complemento de extensión de cupones de woocommerce que le permitirá "
+"establecer reglas únicas o múltiples con operación condicional."
+
+#. Author of the plugin/theme
+msgid "Codecorun"
+msgstr ""
