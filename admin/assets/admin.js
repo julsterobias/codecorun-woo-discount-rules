@@ -408,6 +408,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
             wcdr_create_conditions(parent);
             break;
         default:
+            jQuery('.wcdr_no_rules').show();
             break;
         //pro features will follow
     }
@@ -435,6 +436,9 @@ function wcdr_elementor__(args = new Object){
                 var option = document.createElement('option');
                 option.value = args.options[y].value;
                 option.text = args.options[y].text;
+                if(args.options[y].text == 'Or'){
+                    option.disabled = true;
+                }
                 
                 if(args.value == args.options[y].value){
                     option.defaultSelected = true;
