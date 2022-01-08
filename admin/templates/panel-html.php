@@ -16,17 +16,6 @@
                                 endif; 
                             ?>
                             </optgroup>
-                            <optgroup label="<?php _e('Pro Version'); ?>">
-                            <?php 
-                                if($params['rules']['pro_version']): 
-                                    foreach($params['rules']['pro_version'] as $index => $pro):    
-                            ?>
-                                        <option value="<?php echo $index; ?>"><?php echo $pro; ?></option>
-                            <?php
-                                    endforeach; 
-                                endif; 
-                            ?>
-                            </optgroup>
                         </select>
                     
                 </td>
@@ -44,13 +33,13 @@
         <div align="center">
             <ul>
                 <li>
-                    <?php echo _e('Woo Coupon Discount Rules &copy; '.date('Y').' all rights reserved'); ?>
+                    <?php echo _e('Codecorun - WooCommerce Discount Rules &copy; '.date('Y').' all rights reserved'); ?>
                 </li>
                 <li>
                     <!-- <a href=""><?php _e('Documentation'); ?></a>&nbsp; -->
                     <a href="mail:codecorun@gmail.com">Support</a>&nbsp;
                     <!-- <a href=""><?php _e('Feature Request'); ?></a>&nbsp; -->
-                    <a href=""><b><?php _e('Pro Version'); ?></b></a>
+                    <a href=""><b><?php _e('Full Version'); ?></b></a>
                 </li>
             </ul>
         </div>

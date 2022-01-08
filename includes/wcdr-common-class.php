@@ -68,7 +68,13 @@ class wcdr_common_class
 					'exclude' => __('Exclude Product(s)',WCDR_PREFIX),
 					'count' => __('Number of item(s) in cart',WCDR_PREFIX),
 					'amount' => __('Total Amount',WCDR_PREFIX)
-				],
+				]
+			]
+		);
+	}
+
+	/*
+	,
 				'pro_version' => [
 					'include_category' => __('Include Category',WCDR_PREFIX),
 					'exclude_category' => __('Exclude Category',WCDR_PREFIX),
@@ -78,9 +84,7 @@ class wcdr_common_class
 					'role' => __('User has role(s)',WCDR_PREFIX),
 					'url_param' => __('URL has parameter(s)',WCDR_PREFIX)
 				]
-			]
-		);
-	}
+	 */
 
 
 	/**

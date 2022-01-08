@@ -2,9 +2,11 @@
 /** 
  * 
  * Plugin Name: Codecorun - WooCommerce Discount Rules
- * Description: A woocommerce coupon extension plugin that will allow you to set single or multiple rules with conditional operation.
+ * Plugin URI: https://codecorun.com/details/?plugin_id=74
+ * Description: A WooCommerce coupon extension plugin that will allow you to set single or multiple rules with "AND" conditional operation.
  * Author:      Codecorun
  * Plugin Type: Extension
+ * Author URI: https://codecorun.com
  * Version: 1.0.1
  * Text Domain: wcdr
  * 
@@ -18,19 +20,21 @@ define('WCDR_FOLDER_NAME','codecorun-woo-discount-rules');
 define('WCDR_PREFIX','wcdr');
 define('WCDR_VERSION','1.0.1');
 
-add_action( 'init', 'codecorun_wcdr_load_textdomain' );
-function codecorun_wcdr_load_textdomain() {
-  load_plugin_textdomain( 'wcdr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+if(!function_exists('codecorun_wcdr_load_textdomain')){
+	add_action( 'init', 'codecorun_wcdr_load_textdomain' );
+	function codecorun_wcdr_load_textdomain() {
+		load_plugin_textdomain( 'wcdr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+	}
 }
 
-function wcdr_install(){
+function codecorun_wcdr_install(){
 	if(class_exists('WooCommerce'))
-		return;
+		return;		
 
 	echo '<h3>'.__('Plugin failed to install', WCDR_PREFIX).'</h3>';
     @trigger_error(__('This plugin requires woocommerce installation', WCDR_PREFIX), E_USER_ERROR);
 }
-register_activation_hook( __FILE__, 'wcdr_install' );
+register_activation_hook( __FILE__, 'codecorun_wcdr_install' );
 
 //autoload classes
 spl_autoload_register(function ($class) {

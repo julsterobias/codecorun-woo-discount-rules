@@ -626,14 +626,17 @@ function wcdr_create_conditions(obj){
                 {
                     text: wcdr_label_factory.and,
                     value: 'and'
-                },
-                {
-                    text: wcdr_label_factory.or,
-                    value: 'or'
                 }
             ]
         }
     );
+    /**
+     * ,
+                {
+                    text: wcdr_label_factory.or,
+                    value: 'or'
+                }
+     */
     el_con_label.appendChild(el_con_field);
     el_con_div.appendChild(el_con_label);
     jQuery(obj).prepend(el_con_div);
