@@ -1,17 +1,16 @@
-=== Plugin Name ===
+=== Codecorun - Coupon Discount Rules ===
 Contributors: codecorun
-Tags: WooCommerce, Coupon, Discounts, Auto Discounts, Discount Rules, Rules
+Tags: Coupon, Discounts, Auto Discounts, Discount Rules, Rules
 Requires at least: 4.7
 Tested up to: 5.8
-Stable tag: 4.3
+Stable tag: 1.0.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A WooCommerce coupon plugin that will allow you to set single or multiple rules with "AND" or "OR(Full Version)" conditional operator.
+A coupon plugin that will allow you to set single or multiple rules with "AND" or "OR(Full Version)" conditional operator.
 
 == Description ==
-
 Reach your goals by making your campaign more flexible with less hassle behind.
 
 Catch your customer’s attention by giving them discounts and being able to upsell some products at the same time. Or, get their attention by giving discounts through various conditions to engage them more on your products.
@@ -25,11 +24,12 @@ This plugin is best suited for sale campaigns such as Black Fridays and Christma
 On every coupon you’ve created you can set a rule or multiple rules with AND or OR(Full Version) conditions. If those conditions are being met by the user the coupon will automatically apply to their cart.
 
  == Important ==
-The plugin rules are less priority to coupon usage restrictions provided by WooCommerce. If the usage restrictions are invalid the plugin rules will not apply.
+The plugin rules are less priority to coupon usage restrictions. If the usage restrictions are invalid the plugin rules will not apply.
 
 Features (LITE VERSION):
 
-* WooCommerce Integrated UI
+* Automatically apply coupon(s) if the rule(s) satisfied.
+* Wordpress Integrated UI
 * Simple and straight forward
 * Preset useful rules
 
@@ -44,7 +44,8 @@ Rules Available (LITE VERSION)
 
 Features (FULL VERSION):
 
-* WooCommerce Integrated UI
+* Automatically apply coupon(s) if the rule(s) satisfied.
+* Wordpress Integrated UI
 * Simple and straight forward
 * Preset useful rules some are only available in full version
 * Customable notification after the coupon is applied
@@ -66,13 +67,13 @@ Rules Available (FULL VERSION)
 * User has role(s)		
 * URL has parameter(s)
 
-For more details about the plugin visit our site [codecorun](https://codecorun.com/ "WooCommerce Coupon Discount Rules")
+For more details about the plugin visit our site [codecorun](https://codecorun.com/ "Codecorun Coupon Discount Rules")
 
 == Frequently Asked Questions ==
 
-= What are the differences between our rules and WooCommerce usage restrictions? =
+= What are the differences between our rules and Usage restrictions? =
 
-Our rules are extensions or expanded version of the WooCommerce usage restrictions. The plugin is less priority, if the usage restrictions are invalid the rules will not apply.
+Our rules are extensions or expanded version of the usage restrictions. The plugin is less priority, if the usage restrictions are invalid the rules will not apply.
 
 = Can we add our own set of rules? =
 
@@ -80,7 +81,7 @@ At this moment we are still working on how to customize the rules without diggin
 
 = Is it free? =
 
-We have lite version which is consist of limited rules for free.
+We have lite version which is packed with limited rules for free.
 
 == Screenshots ==
 
@@ -91,3 +92,6 @@ We have lite version which is consist of limited rules for free.
 
 = 1.0.1 =
 * Initial Release
+
+= 1.0.2 =
+* Add tooltip to admin labels

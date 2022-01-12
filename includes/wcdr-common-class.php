@@ -102,10 +102,10 @@ class wcdr_common_class
 				'date' => __('Date',WCDR_PREFIX),
 				'date_range' => __('Date Range',WCDR_PREFIX),
 				'from' => __('From',WCDR_PREFIX),
-				'to' => __('Include',WCDR_PREFIX),
+				'to' => __('To',WCDR_PREFIX),
 				'include' => __('Include',WCDR_PREFIX),
 				'exclude' => __('Exclude',WCDR_PREFIX),
-				'product' => __('Product',WCDR_PREFIX),
+				'product' => __('Product(s)',WCDR_PREFIX),
 				'select_product' => __('Select Product',WCDR_PREFIX),
 				'items_in_cart' => __('Number of item(s) in cart',WCDR_PREFIX),
 				'total_amount' => __('Total amount in the cart',WCDR_PREFIX),
@@ -118,7 +118,13 @@ class wcdr_common_class
 				'less_than_equal' => __('Less than or equal',WCDR_PREFIX),
 				'greater_than_equal' => __('Greater than or equal',WCDR_PREFIX),
 				'equal' => __('Equal',WCDR_PREFIX),
-				'less_than' => __('Less than',WCDR_PREFIX)
+				'less_than' => __('Less than',WCDR_PREFIX),
+				'tooltip_date' => __('Date when the coupon can be applied', WCDR_PREFIX),
+				'tooltip_date_range' => __('Duration of the date when the coupon can be applied', WCDR_PREFIX),
+				'tooltip_include_products' => __('Coupon will apply when product(s) IN the cart', WCDR_PREFIX),
+				'tooltip_exclude_products' => __('Coupon will apply when product(s) NOT IN the cart', WCDR_PREFIX),
+				'tooltip_number_items' => __('Coupon will apply when X is equal to number of product(s) in cart', WCDR_PREFIX),
+				'tooltip_total_amount' => __('Coupon will apply when X is equal to the total amount in cart', WCDR_PREFIX),
 			]
 		);
 	}

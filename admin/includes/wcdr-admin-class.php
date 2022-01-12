@@ -72,7 +72,7 @@ class wcdr_admin_class extends wcdr_common_class
      * 
      * rules_html
      * @since 1.0
-     * @param
+     * @param json
      * @return
      * 
      */
@@ -134,6 +134,7 @@ class wcdr_admin_class extends wcdr_common_class
      * 
      */
     public function save_coupon($post_id){
+
         // I will resume here.
         // Save the data in serialize array format
         // Save the data via post_meta
@@ -142,9 +143,32 @@ class wcdr_admin_class extends wcdr_common_class
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
             return;
 
+        if(!isset($_POST['wcdr_field'])){
+            delete_post_meta($post_id,'wcdr-coupon-rules');
+        }
 
-        $coupon_rules = (isset($_POST['wcdr_field']))? $_POST['wcdr_field'] : null;
+        //sanitize
+        //let's sanitize the _POST array by mapping the elements manually
+        $coupon_rules = $this->do_sanitize($_POST['wcdr_field']);
+        
+        //save to post meta
+        if(!empty($coupon_rules)){
+            update_post_meta($post_id,'wcdr-coupon-rules',$coupon_rules);
+        }else{
+            delete_post_meta($post_id,'wcdr-coupon-rules');
+        }
 
+    }
+
+    /**
+     * 
+     * do_sanitize
+     * @since 1.0.2
+     * @param array
+     * @return array
+     * 
+     */
+    public function do_sanitize($coupon_rules){
         //let's sanitize
         foreach($coupon_rules as $index => $rules){
             if(!is_array($rules)){
@@ -156,13 +180,8 @@ class wcdr_admin_class extends wcdr_common_class
                 }
             }
         }
-        //save to post meta
-        if(!empty($coupon_rules)){
-            update_post_meta($post_id,'wcdr-coupon-rules',$coupon_rules);
-        }else{
-            delete_post_meta($post_id,'wcdr-coupon-rules');
-        }
 
+        return $coupon_rules;
     }
 
 }

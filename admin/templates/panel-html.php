@@ -3,43 +3,40 @@
         <table border="0" class="widefat">
             <tr>
                 <td>
-                        <select class="widefat" id="wcdr_select_rules__">
-                            <option value=""><?php _e('Select Rule'); ?></option>
-                            <optgroup label="<?php _e('Lite Version'); ?>">
-                            <?php 
-                                if($params['rules']['lite_version']): 
-                                    foreach($params['rules']['lite_version'] as $index => $lite):    
-                            ?>
-                                        <option value="<?php echo $index; ?>"><?php echo $lite; ?></option>
-                            <?php
-                                    endforeach; 
-                                endif; 
-                            ?>
-                            </optgroup>
-                        </select>
-                    
+                    <select class="widefat" id="wcdr_select_rules__">
+                        <option value=""><?php esc_html_e('Select Rule', WCDR_PREFIX); ?></option>
+                        <?php 
+                            if($params['rules']['lite_version']): 
+                                foreach($params['rules']['lite_version'] as $index => $lite):    
+                        ?>
+                                <option value="<?php esc_html_e($index, WCDR_PREFIX); ?>"><?php esc_html_e($lite, WCDR_PREFIX); ?></option>
+                        <?php
+                                endforeach;
+                            endif;
+                        ?>
+                        </optgroup>
+                    </select>
                 </td>
             </tr>
         </table>
 
         <div class="wcdr_rules_canvas__">
-            <div class="wcdr_no_rules"><center><?php echo _e('No rules available'); ?></center></div>
+            <div class="wcdr_no_rules"><center><?php esc_html_e('No rules available', WCDR_PREFIX); ?></center></div>
         </div>
 
         <div id="wcdr_saved_rules_container">
-            <?php echo $params['save_rules']; ?>
+            <?php esc_html_e($params['save_rules'], WCDR_PREFIX); ?>
         </div>
 
         <div align="center">
             <ul>
                 <li>
-                    <?php echo _e('Codecorun - WooCommerce Discount Rules &copy; '.date('Y').' all rights reserved'); ?>
+                    <?php esc_html_e('Codecorun - WooCommerce Discount Rules &copy; '.date('Y').' all rights reserved', WCDR_PREFIX); ?>
                 </li>
                 <li>
-                    <!-- <a href=""><?php _e('Documentation'); ?></a>&nbsp; -->
-                    <a href="mail:codecorun@gmail.com">Support</a>&nbsp;
-                    <!-- <a href=""><?php _e('Feature Request'); ?></a>&nbsp; -->
-                    <a href=""><b><?php _e('Full Version'); ?></b></a>
+                    <!-- subject to change the support URL -->
+                    <a href="mail:codecorun@gmail.com" target="_blank"><?php esc_html_e('Support', WCDR_PREFIX); ?></a>&nbsp;
+                    <a href="<?php echo esc_url('https://codecorun.com/plugins/woocommerce-coupon-discount-rules/'); ?>" target="_blank"><b><?php esc_html_e('Full Version', WCDR_PREFIX); ?></b></a>
                 </li>
             </ul>
         </div>

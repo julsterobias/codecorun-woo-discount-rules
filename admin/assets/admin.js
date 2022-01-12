@@ -62,6 +62,12 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                     text: wcdr_label_factory.date
                 }
             );
+
+            wcdr_add_tooltip({
+                parent: rule_label,
+                text: wcdr_label_factory.tooltip_date
+            });
+
             var el = wcdr_elementor__(
                 {
                     type: 'input',
@@ -114,6 +120,11 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                     text: wcdr_label_factory.date_range
                 }
             );
+
+            wcdr_add_tooltip({
+                parent: rule_label,
+                text: wcdr_label_factory.tooltip_date_range
+            });
 
             var label_from = wcdr_elementor__(
                 {
@@ -248,6 +259,11 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                 }
             );
 
+            wcdr_add_tooltip({
+                parent: el_label,
+                text: wcdr_label_factory.tooltip_number_items
+            });
+
             var el_num_condition = wcdr_elementor__(
                 {
                     type: 'select',
@@ -342,6 +358,11 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                     text: wcdr_label_factory.total_amount
                 }
             );
+
+            wcdr_add_tooltip({
+                parent: el_label,
+                text: wcdr_label_factory.tooltip_total_amount
+            });
 
             var el_num_condition = wcdr_elementor__(
                 {
@@ -750,6 +771,16 @@ function wcdr_create_include_exclude_list(params){
         }
     );
 
+    var tooltip_text = wcdr_label_factory.tooltip_exclude_products;
+    if(params.type == 'include'){
+        tooltip_text = wcdr_label_factory.tooltip_include_products;
+    }
+    wcdr_add_tooltip({
+        parent: rule_label,
+        text: tooltip_text
+    });
+    
+
     var el_include = wcdr_elementor__(
         {
             type: 'select',
@@ -838,4 +869,32 @@ function wcdr_assign_saved_conditions(conditions)
     jQuery('.wcdr_rules_canvas__').find('select.wcdr_condition_field').each(function(index){
         jQuery(this).val(conditions[index]);
     });
+}
+
+function wcdr_add_tooltip(args = null){
+    if(!args)
+        return;
+
+    var tooltip_icon = wcdr_elementor__(
+        {
+            type: 'span',
+            attributes: [
+                {
+                    attr: 'class',
+                    value: 'wcdr_tooltip dashicons dashicons-editor-help'
+                }
+            ]
+        }
+    );
+
+    var tooltip_text = wcdr_elementor__(
+        {
+            type: 'i',
+            text: args.text
+        }
+    );
+    
+    tooltip_icon.appendChild(tooltip_text);
+    args.parent.appendChild(tooltip_icon);
+
 }

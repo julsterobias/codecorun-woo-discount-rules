@@ -101,3 +101,31 @@ a.wcdr_condition_remove_field{
     height: 0;
     width: 0;
 }
+
+.wcdr_tooltip{
+    position: relative;
+    font-size: 17px;
+    vertical-align: middle;
+}
+.wcdr_tooltip i{
+    position: absolute;
+    font-size: 12px;
+    font-style: normal;
+    z-index: 10;
+    width: 100px;
+    background: #666;
+    color: white;
+    padding: 10px;
+    line-height: 12px;
+    border-radius: 5px;
+    font-family: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    left: 20px;
+    text-align: left;
+}
+
+.wcdr_tooltip:hover i{
+    display: block;
+}
