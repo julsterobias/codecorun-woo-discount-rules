@@ -2,7 +2,7 @@
 /** 
  * 
  * Plugin Name: Codecorun - Coupon Discount Rules
- * Plugin URI: https://codecorun.com/documentation/woocommerce-coupon-discount-rules/
+ * Plugin URI: https://codecorun.com/plugins/woocommerce-coupon-discount-rules/
  * Description: A coupon extension plugin that will allow you to set single or multiple rules with "AND" conditional operation.
  * Author:      Codecorun
  * Plugin Type: Extension
