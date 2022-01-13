@@ -31,7 +31,7 @@
         <div align="center">
             <ul>
                 <li>
-                    <?php esc_html_e('Codecorun - WooCommerce Discount Rules &copy; '.date('Y').' all rights reserved', 'codecorun-coupon-discount-rules'); ?>
+                    <?php esc_html_e('Codecorun - Coupon Discount Rules &copy; '.date('Y').' all rights reserved', 'codecorun-coupon-discount-rules'); ?>
                 </li>
                 <li>
                     <!-- subject to change the support URL -->
