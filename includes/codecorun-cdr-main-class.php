@@ -5,11 +5,11 @@
  * @version 1.0
  * 
  */
-namespace wcdr\main;
+namespace codecorun\cdr\main;
 
 defined( 'ABSPATH' ) or die( 'No access area' );
 
-class wcdr_main_class{
+class codecorun_cdr_main_class{
 
     private static $instance = null;
 

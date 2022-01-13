@@ -5,12 +5,12 @@
  * @version 1.0
  * 
  */
-namespace wcdr\admin;
-use wcdr\common\wcdr_common_class;
+namespace codecorun\cdr\admin;
+use codecorun\cdr\common\codecorun_cdr_common_class;
 
 defined( 'ABSPATH' ) or die( 'No access area' );
 
-class wcdr_admin_class extends wcdr_common_class
+class codecorun_cdr_admin_class extends codecorun_cdr_common_class
 {
 
     /**
@@ -42,13 +42,13 @@ class wcdr_admin_class extends wcdr_common_class
     public function assets()
     {   
         //load css
-        wp_enqueue_style(WCDR_PREFIX.'-admin-assets', WCDR_API_URL.'admin/assets/admin.css');
+        wp_enqueue_style(CODECORUN_CDR_PREFIX.'-admin-assets', CODECORUN_CDR_URL.'admin/assets/admin.css');
         //load js
-        wp_register_script( WCDR_PREFIX.'-admin-assets-js', WCDR_API_URL.'admin/assets/admin.js', array('jquery') );
-        wp_enqueue_script( WCDR_PREFIX.'-admin-assets-js' );
-        wp_localize_script( WCDR_PREFIX.'-admin-assets-js', 'wcdrAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ))); 
+        wp_register_script( CODECORUN_CDR_PREFIX.'-admin-assets-js', CODECORUN_CDR_URL.'admin/assets/admin.js', array('jquery') );
+        wp_enqueue_script( CODECORUN_CDR_PREFIX.'-admin-assets-js' );
+        wp_localize_script( CODECORUN_CDR_PREFIX.'-admin-assets-js', 'wcdrAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ))); 
         //render translatable labels
-        wp_localize_script( WCDR_PREFIX.'-admin-assets-js', 'wcdr_label_factory', $this->translatable_text());   
+        wp_localize_script( CODECORUN_CDR_PREFIX.'-admin-assets-js', 'wcdr_label_factory', $this->translatable_text());   
     }
 
     /**
