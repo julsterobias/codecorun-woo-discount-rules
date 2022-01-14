@@ -312,11 +312,15 @@ class codecorun_cdr_main_class{
         $locatime = explode(' ',current_time( 'mysql' ));
 
         if($args['type'] == 'today'){
+            $args['date'] = $this->extra_sanitize($args['date'], 'string');
             $today = strtotime($locatime[0]);
             $date = strtotime(date($args['date']));
             $diff = $date - $today;
             return ($diff == 0)? 1 : 0;
         }else{
+            //extra sanitize
+            $args['from'] = $this->extra_sanitize($args['from'], 'string');
+            $args['to'] = $this->extra_sanitize($args['to'], 'string');
             $today = strtotime($locatime[0]);
             $date1 = strtotime(date($args['from']));
             $date2 = strtotime(date($args['to']));
@@ -338,13 +342,16 @@ class codecorun_cdr_main_class{
     {
         if(empty($args))
             return 0;
-
+        
 
         if($args['type'] == 'count'){
             $in_rule_value = $this->get_cart_items('count');
         }else{
             $in_rule_value = $this->get_cart_items('amount');
         }
+
+        //extra sanitize
+        $args['rule']['value'] = $this->extra_sanitize($args['rule']['value'], 'number');
     
         switch($args['rule']['condition']){
             case 'less_than_equal':
@@ -373,6 +380,33 @@ class codecorun_cdr_main_class{
                 return 0;
                 break;
         }
+    }
+
+    /**
+     * 
+     * extra_sanitize
+     * @since 1.0.2
+     * @param mixed, string
+     * @return string
+     * 
+     */
+    public function extra_sanitize($input = null, $type = '')
+    {
+        if(!$input)
+            return;
+
+        switch($type){
+            case 'number':
+                if(!is_numeric($input))
+                    return 0;
+                else
+                    return $input;
+            break;
+            case 'string':
+                return sanitize_text_field($input);
+            break;
+        }
+        
     }
 
 }
