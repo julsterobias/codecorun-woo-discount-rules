@@ -130,15 +130,16 @@ class codecorun_cdr_main_class{
                 $cond_collections = [];
                 foreach($coupons as $coupon){
 
-                    //remove added coupons
-                    if(in_array( $coupon->post_name, WC()->cart->get_applied_coupons())){
-                        WC()->cart->remove_coupon( $coupon->post_name );
-                        WC()->cart->calculate_totals();
-                    }
-
                     $cond_value = [];
                     $rules = get_post_meta($coupon->ID,'wcdr-coupon-rules',true);
+                    
                     if($rules){
+                        //remove added coupons
+                        if(in_array( $coupon->post_name, WC()->cart->get_applied_coupons())){
+                            WC()->cart->remove_coupon( $coupon->post_name );
+                            WC()->cart->calculate_totals();
+                        }
+
                         foreach($rules as $rule_index => $rule){
                             $type = explode('-',$rule_index);
                             if(count($type) > 1){
