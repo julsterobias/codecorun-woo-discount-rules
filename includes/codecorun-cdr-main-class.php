@@ -219,79 +219,11 @@ class codecorun_cdr_main_class{
                      * execute using eval() - deprecated
                      * @since 1.0.2
                      * we deprecated this approach because the wordpress is not approving the idea.
-                     * to make wordpress happy I think we should send them a delicious adobo?
                      * 
                      */
                     //$cond_value = implode(' ',$collection['rule']);
                     //$cond_value = "\$apply_coupon_ = (".$cond_value.");";
                     //eval($cond_value);
-                    
-                    /**
-                     * 
-                     * Evaluate without using eval. Let's do the hard way most chick loves it anyway.
-                     * @since 1.0.2
-                     * 
-                     */
-
-                    /**
-                     * 
-                     * NOTE: the code to evaluate the grouped operations SHOULD only available in full version
-                     * for now show the code for code review
-                     * 
-                     */
-                    $grouped_range = [];
-                    $grouped_break_points = [];
-                    //determine the indexes of grouped operations
-                    foreach($collection['rule'] as $index => $_rule_){
-                        if(!is_numeric($_rule_) && $_rule_ != '&&'){
-                            if(strpos($_rule_,'(') !== false){
-                                $grouped_break_points[] = $index;
-                            }
-                            if(strpos($_rule_,')') !== false){
-                                $grouped_break_points[] = $index;
-                                $grouped_range[] = $grouped_break_points;
-                                $grouped_break_points = [];
-                            }
-                        }
-                    }
-
-                    //get the grouped and evaluate
-                    $grouped_results = [];
-                    foreach($grouped_range as $range){
-
-                        $range_1 = $range[0];
-                        $range_2 = $range[1];
-                        $is_first = 0;
-                        $g_index = null;
-                        $g_result = 0;
-
-                        for($x = $range_1; $x <= $range_2; $x++){
-                            if(!is_numeric($collection['rule'][$x]) && $collection['rule'][$x] != '||'){
-                                $value = (int) str_replace(['(',')'],'',$collection['rule'][$x]);
-                            }else{
-                                $value = $collection['rule'][$x];
-                            }
-                            if($value == 1){
-                                $g_result = 1;
-                            }
-                            if($is_first > 0){
-                                //remove the old ungroup operations
-                                unset($collection['rule'][$x]);
-                            }else{
-                                $g_index = $x;
-                            }
-                            $is_first++;
-                        }
-
-                        $grouped_results[$g_index] = $g_result;
-                        
-                    }
-
-                    //reassign grouped results 
-                    foreach($grouped_results as $index => $result_){
-                        //reassign the evaluated grouped operations
-                        $collection['rule'][$index] = $result_;
-                    }
                     
                     //evaluate the grouped results together with 'and' operation
                     $apply_coupon_ = true;
