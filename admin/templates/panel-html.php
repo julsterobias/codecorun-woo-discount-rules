@@ -35,7 +35,7 @@
                 </li>
                 <li>
                     <!-- subject to change the support URL -->
-                    <a href="mail:codecorun@gmail.com" target="_blank"><?php esc_html_e('Support', 'codecorun-coupon-discount-rules'); ?></a>&nbsp;
+                    <a href="<?php echo esc_url('https://wordpress.org/support/plugin/codecorun-coupon-discount-rules/'); ?>" target="_blank"><?php esc_html_e('Community Support', 'codecorun-coupon-discount-rules'); ?></a>&nbsp;
                     <a href="<?php echo esc_url('https://codecorun.com/plugins/woocommerce-coupon-discount-rules/'); ?>" target="_blank"><b><?php esc_html_e('Full Version', 'codecorun-coupon-discount-rules'); ?></b></a>
                 </li>
             </ul>
