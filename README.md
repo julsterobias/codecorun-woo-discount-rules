@@ -85,8 +85,8 @@ We have free version which is packed with useful rules for free.
 
 ### Screenshots
 
-1. screenshot-1.jpg
-2. screenshot-2.jpg
+1. ![Sreenshot 1](https://github.com/julsterobias/codecorun-woo-discount-rules/blob/main/screenshot-1.jpg)
+2. ![Sreenshot 2](https://github.com/julsterobias/codecorun-woo-discount-rules/blob/main/screenshot-2.jpg)
 
 ## Changelog
 
