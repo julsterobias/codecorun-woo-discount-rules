@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 A coupon plugin that will allow you to set single or multiple rules with "AND" or "OR(Full Version)" conditional operator.
 
 == Description ==
-Reach your goals by making your campaign more flexible with less hassle behind.
+Reach your goals by making your campaign more flexible and less hassle behind.
 
 Catch your customer’s attention by giving them discounts and being able to upsell some products at the same time. Or, get their attention by giving discounts through various conditions to engage them more on your products.
 
@@ -26,14 +26,14 @@ On every coupon you’ve created you can set a rule or multiple rules with AND o
  == Important ==
 The plugin rules are less priority to coupon usage restrictions. If the usage restrictions are invalid the plugin rules will not apply.
 
-Features (LITE VERSION):
+Features (FREE VERSION):
 
 * Automatically apply coupon(s) if the rule(s) satisfied.
 * Wordpress Integrated UI
 * Simple and straight forward
 * Preset useful rules
 
-Rules Available (LITE VERSION)
+Rules Available (FREE VERSION)
 
 * Date		
 * Date Range		
@@ -49,7 +49,7 @@ Features (FULL VERSION):
 * Simple and straight forward
 * Preset useful rules some are only available in full version
 * Customable notification after the coupon is applied
-* "And" and "Or" conditional operation
+* "And" or "Or" conditional operation
 
 Rules Available (FULL VERSION)
 
@@ -81,7 +81,7 @@ At this moment we are still working on how to customize the rules without diggin
 
 = Is it free? =
 
-We have lite version which is packed with limited rules for free.
+We have free version which is packed with useful rules for free.
 
 == Screenshots ==
 
