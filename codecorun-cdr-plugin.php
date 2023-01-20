@@ -1,13 +1,14 @@
 <?php
 /** 
  * 
+ * 
  * Plugin Name: Codecorun - Coupon Discount Rules
  * Plugin URI: https://codecorun.com/plugins/woocommerce-coupon-discount-rules/
- * Description: A coupon extension plugin that will allow you to set single or multiple rules with "AND" conditional operation.
+ * Description: A WooCommerce coupon extension plugin that will allow you to set single or multiple rules with "AND" conditional operation.
  * Author:      Codecorun
- * Plugin Type: Extension
  * Author URI: https://codecorun.com
- * Version: 1.0.2
+ * Plugin Type: Extension
+ * Version: 1.3.1
  * Text Domain: codecorun-coupon-discount-rules
  * 
  * 
@@ -17,21 +18,22 @@ defined( 'ABSPATH' ) or die( 'No access area' );
 define('CODECORUN_CDR_PATH', plugin_dir_path( __FILE__ ));
 define('CODECORUN_CDR_URL', plugin_dir_url( __FILE__ ));
 define('CODECORUN_CDR_PREFIX','codecorun_cdr');
-define('CODECORUN_CDR_VERSION','1.0.2');
+define('CODECORUN_CDR_VERSION','1.3.0');
+define('CODECORUN_CDR_PRO_ID','codecorun-coupon-discount-rules-pro/codecorun-cdr-plugin-pro.php');
 
-add_action( 'init', 'codecorun_cdr_load_textdomain' );
-function codecorun_cdr_load_textdomain() {
+add_action( 'init', 'codecorun_wcdr_load_textdomain' );
+function codecorun_wcdr_load_textdomain() {
 	load_plugin_textdomain( 'codecorun-coupon-discount-rules', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 }
 
-function codecorun_cdr_install(){
+function codecorun_wcdr_install(){
 	if(class_exists('WooCommerce'))
-		return;		
+		return;
 
-	echo '<h3>'.__('Plugin failed to install', 'codecorun-coupon-discount-rules').'</h3>';
-    @trigger_error(__('This plugin requires WooCommerce installation', 'codecorun-coupon-discount-rules'), E_USER_ERROR);
+	echo '<strong>'.__('This plugin requires woocommerce installation', 'codecorun-coupon-discount-rules').'</strong>';
+    @trigger_error(__('Woocommerce plugin is missing', 'codecorun-coupon-discount-rules'), E_USER_ERROR);
 }
-register_activation_hook( __FILE__, 'codecorun_cdr_install' );
+register_activation_hook( __FILE__, 'codecorun_wcdr_install' );
 
 //autoload classes
 spl_autoload_register(function ($class) {
@@ -49,17 +51,16 @@ spl_autoload_register(function ($class) {
 
 });
 
-
 add_action('plugins_loaded','codecorun_cdr_init');
 function codecorun_cdr_init(){
-	
+		
 	if(current_user_can('administrator')){
 		//load admin class
 		new codecorun\cdr\admin\codecorun_cdr_admin_class();
 	}
-	
+		
 	//load global class
 	new codecorun\cdr\main\codecorun_cdr_main_class();
-	
+		
 }
 ?>

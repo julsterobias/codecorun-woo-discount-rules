@@ -2,8 +2,8 @@
 Contributors: codecorun
 Tags: Coupon, Discounts, Auto Discounts, Discount Rules, Rules
 Requires at least: 4.7
-Tested up to: 5.8
-Stable tag: 1.0.2
+Tested up to: 6.1.1
+Stable tag: 1.3.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -31,27 +31,10 @@ Features (FREE VERSION):
 * Automatically apply coupon(s) if the rule(s) satisfied.
 * Wordpress Integrated UI
 * Simple and straight forward
-* Preset useful rules
-
-Rules Available (FREE VERSION)
-
-* Date		
-* Date Range		
-* Include Product(s)		
-* Exclude Product(s)		
-* Number of item(s) in cart		
-* Total Amount
-
-Features (FULL VERSION):
-
-* Automatically apply coupon(s) if the rule(s) satisfied.
-* Wordpress Integrated UI
-* Simple and straight forward
 * Preset useful rules some are only available in full version
 * Customable notification after the coupon is applied
-* "And" or "Or" conditional operation
 
-Rules Available (FULL VERSION)
+Rules Available (FREE VERSION)
 
 * Date		
 * Date Range		
@@ -66,6 +49,12 @@ Rules Available (FULL VERSION)
 * User has meta value(s)		
 * User has role(s)		
 * URL has parameter(s)
+
+Features (FULL VERSION):
+
+* "And" or "Or" conditional operation
+
+
 
 For more details about the plugin visit our site [codecorun](https://codecorun.com/ "Codecorun Coupon Discount Rules")
 
@@ -95,3 +84,14 @@ We have free version which is packed with useful rules for free.
 
 = 1.0.2 =
 * Add tooltip to admin labels
+
+= 1.0.3 =
+* Bug fixes
+
+= 1.3.0 =
+* New rules added
+* Update deprecated is_valid()
+* Fix bugs on applying coupon
+
+= 1.3.1 =
+* Enhance security

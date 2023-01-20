@@ -1,8 +1,18 @@
+/**
+ * 
+ * admin.js
+ * @since 1.2.0
+ * @author Codecorun
+ * 
+ */
+
 jQuery(document).ready(function(){
+
     jQuery('#wcdr_select_rules__').change(function(){
         var rule = jQuery(this).val();
         jQuery(this).val('');
         wcdr_add_rules(rule);
+        jQuery('html, body').animate({ scrollTop:  jQuery('.wcdr_rules_canvas__').offset().top - 50 }, 'slow');
     });
 
     jQuery('body').on('click','.wcdr_condition_remove_field',function(){
@@ -17,9 +27,10 @@ jQuery(document).ready(function(){
 
     //on select from include products and add the selected product in the generated table
     //not working
-    jQuery('body').on('change','.wcdr_product_list',function(){
+    jQuery('body').on('change','.wcdr_product_list, .wcdr_category_list, .wcdr_role_list',function(){
         var type = jQuery(this).data('list-type');
-        wcdr_add_el_to_list(type, this);
+        if(type != 'role' && type != 'include_category' && type != 'exclude_category')
+            wcdr_add_el_to_list(type, this);
     });
 
     //remove the selected product
@@ -31,6 +42,17 @@ jQuery(document).ready(function(){
 
     //load saved rules
     wcdr_load_saved_rules();
+
+    jQuery('body').on('click','.wcdr-add-metas-el, .wcdr-add-url_param-el', function(){
+        var parent = jQuery(this).closest('table');
+        var cloned = jQuery(this).closest('tr').clone(true);
+        jQuery(parent).append(cloned);
+    });
+
+    jQuery('body').on('click','.wcdr-remove-metas-el, .wcdr-remove-url_param-el', function(){
+       jQuery(this).closest('tr').remove();
+    });
+
 });
 
 var wcdr_rule_canvas = '.wcdr_rules_canvas__';
@@ -201,7 +223,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
 
             break;
         case 'include':            
-            var inc_parent = wcdr_create_include_exclude_list(
+            var inc_parent = wcdr_create_select_list(
                 {
                     type: 'include',
                     rule: rule
@@ -215,7 +237,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
             }
             break;
         case 'exclude':
-            var exc_parent = wcdr_create_include_exclude_list(
+            var exc_parent = wcdr_create_select_list(
                 {
                     type: 'exclude',
                     rule: rule
@@ -228,107 +250,42 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                 }
             }
             break;
-        case 'count':
-
-            var c_value = [];
-            for(var v in value){
-                c_value.push(value[v]);
-            }
-        
-            var count_uid = wcdr_unique_name();
-            var parent = wcdr_elementor__(
-                {
-                    type: 'div',
-                    attributes: [
-                        {
-                            attr: 'class',
-                            value: 'wcdr_count_rule_con wcdr__rule_con'
-                        },
-                        {
-                            attr: 'data-rule-type',
-                            value: rule
-                        }
-                    ]
-                }
-            );
-
-            var el_label = wcdr_elementor__(
-                {
-                    type: 'label',
-                    text: wcdr_label_factory.items_in_cart
-                }
-            );
-
-            wcdr_add_tooltip({
-                parent: el_label,
-                text: wcdr_label_factory.tooltip_number_items
-            });
-
-            var el_num_condition = wcdr_elementor__(
-                {
-                    type: 'select',
-                    attributes: [
-                        {
-                            attr: 'class',
-                            value: 'wcdr_number_condition'
-                        },
-                        {
-                            attr: 'name',
-                            value: 'wcdr_field[count-'+count_uid+'][condition]'
-                        }
-                    ],
-                    options: [
-                        {
-                            text: wcdr_label_factory.less_than_equal,
-                            value: 'less_than_equal'
-                        },
-                        {
-                            text: wcdr_label_factory.greater_than_equal,
-                            value: 'greater_than_equal'
-                        },
-                        {
-                            text: wcdr_label_factory.equal,
-                            value: 'equal'
-                        }
-                    ],
-                    value: (c_value.length > 0)? c_value[0] : value
-                }
-            );
-
-            var el_count = wcdr_elementor__(
-                {
-                    type: 'input',
-                    attributes: [
-                        {
-                            attr: 'type',
-                            value: 'number'
-                        },
-                        {
-                            attr: 'class',
-                            value: 'wcdr_count_rule_el wcdr_number_el'
-                        },
-                        {
-                            attr: 'placeholder',
-                            value: '0'
-                        },
-                        {
-                            attr: 'name',
-                            value: 'wcdr_field[count-'+count_uid+'][value]'
-                        },
-                        {
-                            attr: 'value',
-                            value: (c_value.length > 0)? c_value[1] : value
-                        }
-                    ]
-                }
-            );
-            el_label.appendChild(el_num_condition);
-            el_label.appendChild(el_count);
-            parent.appendChild(el_label);
-            jQuery(wcdr_rule_canvas).append(parent);
-            wcdr_create_conditions(parent);
+        case 'role':
+        case 'had_purchased_product':
+        case 'include_category':
+        case 'exclude_category':
+                var exc_parent = wcdr_create_select_list(
+                    {
+                        type: rule,
+                        rule: rule,
+                        value: value
+                    }
+                );
+                wcdr_create_conditions(parent);
+                if(generate_list){
+                    for(var y in generate_list){
+                        wcdr_generate_added_el_to_list(exc_parent, rule, generate_list[y].product_id, generate_list[y].product_text);
+                    }
+                } 
             break;
+        
+        case 'count':
         case 'amount':
+        case 'previous_orders':
+
+            var label_text = '';
+            var tooltip = null;
+
+            if(rule == 'count'){
+                label_text = wcdr_label_factory.items_in_cart;
+                tooltip = wcdr_label_factory.tooltip_number_items;
+            }else if(rule == 'amount'){
+                label_text = wcdr_label_factory.total_amount;
+                tooltip = wcdr_label_factory.tooltip_total_amount;
+            }else if(rule == 'previous_orders'){
+                label_text = wcdr_label_factory.previous_orders;
+                tooltip = wcdr_label_factory.tooltip_had_prev_orders;
+            }
 
             var a_value = [];
             for(var v in value){
@@ -342,7 +299,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                     attributes: [
                         {
                             attr: 'class',
-                            value: 'wcdr_amount_rule_con wcdr__rule_con'
+                            value: 'wcdr_'+rule+'_rule_con wcdr__rule_con'
                         },
                         {
                             attr: 'data-rule-type',
@@ -355,15 +312,17 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
             var el_label = wcdr_elementor__(
                 {
                     type: 'label',
-                    text: wcdr_label_factory.total_amount
+                    text: label_text
                 }
             );
 
-            wcdr_add_tooltip({
-                parent: el_label,
-                text: wcdr_label_factory.tooltip_total_amount
-            });
-
+            if(tooltip){
+                wcdr_add_tooltip({
+                    parent: el_label,
+                    text: tooltip
+                });    
+            }
+            
             var el_num_condition = wcdr_elementor__(
                 {
                     type: 'select',
@@ -374,7 +333,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[amount-'+amount_uid+'][condition]'
+                            value: 'wcdr_field['+rule+'-'+amount_uid+'][condition]'
                         }
                     ],
                     options: [
@@ -405,7 +364,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'class',
-                            value: 'wcdr_amount_rule_el wcdr_number_el'
+                            value: 'wcdr_'+rule+'_rule_el wcdr_number_el'
                         },
                         {
                             attr: 'placeholder',
@@ -413,7 +372,7 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
                         },
                         {
                             attr: 'name',
-                            value: 'wcdr_field[amount-'+amount_uid+'][value]'
+                            value: 'wcdr_field['+rule+'-'+amount_uid+'][value]'
                         },
                         {
                             attr: 'value',
@@ -428,8 +387,213 @@ function wcdr_add_rules(rule, value = null, generate_list = null){
             jQuery(wcdr_rule_canvas).append(parent);
             wcdr_create_conditions(parent);
             break;
+        
+        case 'url_param':
+        case 'metas':
+
+            var label_text = (rule == 'metas')? wcdr_label_factory.meta_label : wcdr_label_factory.param_label;
+            var input_key = (rule == 'metas')? wcdr_label_factory.meta_key : wcdr_label_factory.param_key;
+            var input_value = (rule == 'metas')? wcdr_label_factory.meta_value : wcdr_label_factory.param_value;
+
+            var amount_uid = wcdr_unique_name();
+            var parent = wcdr_elementor__(
+                {
+                    type: 'div',
+                    attributes: [
+                        {
+                            attr: 'class',
+                            value: 'wcdr_'+rule+'_rule_con wcdr__rule_con'
+                        },
+                        {
+                            attr: 'data-rule-type',
+                            value: rule
+                        }
+                    ]
+                }
+            );
+
+            var el_label = wcdr_elementor__(
+                {
+                    type: 'label',
+                    text: label_text
+                }
+            );
+
+            tooltip = null;
+            switch(rule){
+                case 'url_param':
+                    tooltip = wcdr_label_factory.tooltip_url_have_param;
+                    break;
+                case 'metas':
+                    tooltip = wcdr_label_factory.tooltip_have_meta_value;
+                    break;
+            }
+
+            if(tooltip){
+                wcdr_add_tooltip({
+                    parent: el_label,
+                    text: tooltip
+                });    
+            }
+
+            var el_field_wrapper = wcdr_elementor__(
+                {
+                    type: 'table',
+                    attributes: [
+                        {
+                            attr: 'class',
+                            value: 'wcdr_'+rule+'_fields_wrapper wcdr_inlie_input_table widefat'
+                        }
+                    ]
+                }
+            );
+
+            var to_loop = (value)? value.length : 1; 
+
+            for(var z = 0; z < to_loop; z++){
+
+            var el_field_wrapper_tr = wcdr_elementor__(
+                {
+                    type: 'tr'
+                }
+            );
+            
+            for(var x = 1; x <= 2; x++){        
+                var to_add_field = null;
+                if(x == 1){
+                    to_add_field = wcdr_elementor__(
+                        {
+                            type: 'input',
+                            attributes: [
+                                {
+                                    attr: 'type',
+                                    value: 'text'
+                                },  
+                                {
+                                    attr: 'class',
+                                    value: 'wcdr_'+rule+'_rule_con wcdr__rule_con_inline_text'
+                                },
+                                {
+                                    attr: 'name',
+                                    value: 'wcdr_field['+rule+'-'+amount_uid+'][]'
+                                },
+                                {
+                                    attr: 'placeholder',
+                                    value: input_key
+                                },
+                                {
+                                    attr: 'value',
+                                    value: (value) ? value[z].key : ''
+                                }
+                            ]
+                        }
+                    );
+                }else{
+                    to_add_field = wcdr_elementor__(
+                        {
+                            type: 'input',
+                            attributes: [
+                                {
+                                    attr: 'type',
+                                    value: 'text'
+                                },  
+                                {
+                                    attr: 'class',
+                                    value: 'wcdr_'+rule+'_rule_con wcdr__rule_con_inline_text'
+                                },
+                                {
+                                    attr: 'name',
+                                    value: 'wcdr_field['+rule+'-'+amount_uid+'][]'
+                                },
+                                {
+                                    attr: 'placeholder',
+                                    value: input_value
+                                },
+                                {
+                                    attr: 'value',
+                                    value: (value) ? value[z].value : ''
+                                }
+                            ]
+                        }
+                    );
+                }
+                var el_field_td = wcdr_elementor__(
+                    {
+                        type: 'td',
+                        attributes: [
+                            {
+                                attr: 'width',
+                                value: '45%'
+                            }
+                        ]
+                    }
+                );
+                el_field_td.appendChild(to_add_field);
+                el_field_wrapper_tr.appendChild(el_field_td);
+            }
+            
+            var el_field_td_last = wcdr_elementor__(
+                {
+                    type: 'td',
+                    attributes: [
+                        {
+                            attr: 'width',
+                            value: '10%'
+                        }
+                    ]
+                }  
+            );     
+
+            //add add button
+            var el_add_btn = wcdr_elementor__(
+                {
+                    type: 'span',
+                    attributes: [
+                        {
+                            attr: 'class',
+                            value: 'button button-primary wcdr-add-'+rule+'-el'
+                        },
+                        {
+                            attr: 'title',
+                            value: wcdr_label_factory.add
+                        }
+                    ],
+                    text: '+'
+                }
+            )
+            var el_remove_btn = wcdr_elementor__(
+                {
+                    type: 'span',
+                    attributes: [
+                        {
+                            attr: 'class',
+                            value: 'button button-secondary wcdr-remove-'+rule+'-el'
+                        },
+                        {
+                            attr: 'title',
+                            value: wcdr_label_factory.remove
+                        }
+                    ],
+                    text: '-'
+                }
+            )
+            el_field_td_last.appendChild(el_add_btn);
+            el_field_td_last.appendChild(el_remove_btn);
+            el_field_wrapper_tr.appendChild(el_field_td_last); 
+            el_field_wrapper.appendChild(el_field_wrapper_tr);
+
+            //end of loop
+            }
+
+            parent.appendChild(el_label);
+            parent.appendChild(el_field_wrapper);
+            jQuery(wcdr_rule_canvas).append(parent);
+            wcdr_create_conditions(parent);
+    
+            break;
+            
         default:
-            jQuery('.wcdr_no_rules').show();
+
             break;
         //pro features will follow
     }
@@ -457,12 +621,18 @@ function wcdr_elementor__(args = new Object){
                 var option = document.createElement('option');
                 option.value = args.options[y].value;
                 option.text = args.options[y].text;
-                if(args.options[y].text == 'Or'){
-                    option.disabled = true;
-                }
                 
-                if(args.value == args.options[y].value){
-                    option.defaultSelected = true;
+                var check_value = Array.isArray(args.value);
+                if(check_value){
+                    for(var b in args.value){
+                        if(args.value[b] == args.options[y].value){
+                            option.defaultSelected = true;
+                        }
+                    }
+                }else{
+                    if(args.value == args.options[y].value){
+                        option.defaultSelected = true;
+                    }
                 }
                 element.appendChild(option);
             }
@@ -486,7 +656,7 @@ function wcdr_add_el_to_list(type = null, obj = null)
 
 function wcdr_generate_added_el_to_list(list_parent, type, product, product_text)
 {
-    var class_type = (type == 'include')? 'wcdr_include_generated_list' : 'wcdr_exclude_generated_list';
+    var class_type = 'wcdr_'+type+'_generated_list';
     var table_added = jQuery(list_parent).find('.wcdr_'+type+'_generated_list');
     if(table_added.length == 0){
          //don't forget to get the parent element
@@ -588,7 +758,7 @@ function wcdr_generate_added_el_to_list(list_parent, type, product, product_text
                         value: product
                     }
                 ],
-                text: 'Remove'
+                text: wcdr_label_factory.remove
             }
         );
         td_remove.appendChild(td_remove_el);
@@ -609,7 +779,8 @@ function wcdr_generate_added_el_to_list(list_parent, type, product, product_text
 }
 
 function wcdr_create_conditions(obj){
-    var get_con = jQuery('.wcdr_rules_canvas__').find('.wcdr__rule_con');
+    //remove this garbage
+    //var get_con = jQuery('.wcdr_rules_canvas__').find('.wcdr__rule_con');
 
     var el_con_div = wcdr_elementor__(
         {
@@ -630,6 +801,21 @@ function wcdr_create_conditions(obj){
         }
     );
 
+
+    var ooptions = [
+        {
+            text: wcdr_label_factory.and,
+            value: 'and'
+        }
+    ];
+
+    if( codecorun_is_upgraded ){
+        ooptions.push( {
+            text: wcdr_label_factory.or,
+            value: 'or'
+        } );
+    }
+
     var el_con_field = wcdr_elementor__(
         {
             type: 'select',
@@ -643,21 +829,9 @@ function wcdr_create_conditions(obj){
                     value: 'wcdr_field[condition-'+wcdr_unique_name()+']'
                 }
             ],
-            options: [
-                {
-                    text: wcdr_label_factory.and,
-                    value: 'and'
-                }
-            ]
+            options: ooptions
         }
     );
-    /**
-     * ,
-                {
-                    text: wcdr_label_factory.or,
-                    value: 'or'
-                }
-     */
     el_con_label.appendChild(el_con_field);
     el_con_div.appendChild(el_con_label);
     jQuery(obj).prepend(el_con_div);
@@ -706,14 +880,14 @@ function wcdr_init_select2(field_class = null)
 
     var transkey = jQuery('#wcdr_discount_rules').data('trans-key');
 
-    jQuery(field_class).selectWoo({
+    jQuery(field_class.el).selectWoo({
         minimumInputLength: 3,
         ajax: {
             url: wcdrAjax.ajaxurl,
             data: function (params) {
                 var query = {
                     search: params.term,
-                    action: 'wcdr_product_list_options',
+                    action: field_class.action,
                     nonce: transkey
                 }
                 return query;
@@ -744,7 +918,43 @@ function wcdr_init_select2(field_class = null)
 
 }
 
-function wcdr_create_include_exclude_list(params){
+function wcdr_create_select_list(params){
+
+
+    var field_list_cass = 'wcdr_product_list';
+    var field_title_type = wcdr_label_factory.product;
+    var title_ = (params.type == 'include')? wcdr_label_factory.include : wcdr_label_factory.exclude;
+    var field_select_placeholder = wcdr_label_factory.select_product;
+    var list_action = 'wcdr_product_list_options';
+
+    var is_multiple = false;
+
+    switch(params.type){
+        case 'include_category':
+        case 'exclude_category':
+            field_list_cass = 'wcdr_category_list';
+            field_title_type = wcdr_label_factory.category;
+            title_ = (params.type == 'include_category')? wcdr_label_factory.include : wcdr_label_factory.exclude;
+            field_select_placeholder = wcdr_label_factory.select_category;
+            list_action = 'wcdr_category_list_options';
+            is_multiple = true;
+            break;
+        case 'had_purchased_product':
+            title_ = wcdr_label_factory.had_purchased;
+            field_title_type = wcdr_label_factory.items;
+            break;
+        case 'role':
+            field_list_cass = 'wcdr_role_list';
+            title_ = wcdr_label_factory.role;
+            field_title_type = '';
+            field_select_placeholder = wcdr_label_factory.select_role;
+            list_action = 'wcdr_role_list_options';
+            is_multiple = true;
+            break;
+        default:
+            break;
+    }
+
     var parent = wcdr_elementor__(
         {
             type: 'div',
@@ -762,44 +972,92 @@ function wcdr_create_include_exclude_list(params){
     );
 
 
-    var title_ = (params.type == 'include')? wcdr_label_factory.include : wcdr_label_factory.exclude;
+    
     
     var rule_label = wcdr_elementor__(
         {
             type: 'h4',
-            text: title_+ ' ' + wcdr_label_factory.product
+            text: title_+ ' ' + field_title_type
         }
     );
 
-    var tooltip_text = wcdr_label_factory.tooltip_exclude_products;
-    if(params.type == 'include'){
-        tooltip_text = wcdr_label_factory.tooltip_include_products;
+    var tooltip_title = null;
+    switch(params.type){
+        case 'include':
+            tooltip_title = wcdr_label_factory.tooltip_include_products;
+            break;
+        case 'exclude':
+            tooltip_title = wcdr_label_factory.tooltip_exclude_products;
+            break;
+        case 'include_category':
+            tooltip_title = wcdr_label_factory.tooltip_include_category;
+            break;
+        case 'exclude_category':
+            tooltip_title = wcdr_label_factory.tooltip_exclude_category;
+            break;
+        case 'had_purchased_product':
+            tooltip_title = wcdr_label_factory.tooltip_had_purchased_items;
+            break;
+        case 'role':
+            tooltip_title = wcdr_label_factory.tooltip_have_roles;
+            break;
     }
-    wcdr_add_tooltip({
-        parent: rule_label,
-        text: tooltip_text
-    });
-    
+
+    if(tooltip_title){
+        wcdr_add_tooltip({
+            parent: rule_label,
+            text: tooltip_title
+        });
+    }   
+
+    var select__attr_ = [
+        {
+            attr: 'class',
+            value: 'wcdr_'+params.type+'_rule_field widefat '+field_list_cass
+        },
+        {
+            attr: 'data-list-type',
+            value: params.type
+        }
+    ];
+
+    if(is_multiple){
+        select__attr_.push({
+            attr: 'multiple',
+            value: true
+        });
+        
+        select__attr_.push({
+            attr: 'name',
+            value: 'wcdr_field['+params.type+'-'+wcdr_unique_name()+'][]'
+        });
+    }
+
+    var default_options = [
+        {
+            text: field_select_placeholder,
+            value: ''
+        }
+    ];
+
+    var default_value = (params.value)? params.value : []; 
+    if(params.type == 'role' || params.type == 'include_category' || params.type == 'exclude_category'){
+        for(var c in params.value){
+            default_options.push(
+                {
+                    text: params.value[c],
+                    value: params.value[c]
+                }
+            );
+        }
+    }
 
     var el_include = wcdr_elementor__(
         {
             type: 'select',
-            attributes: [
-                {
-                    attr: 'class',
-                    value: 'wcdr_'+params.type+'_rule_field widefat wcdr_product_list'
-                },
-                {
-                    attr: 'data-list-type',
-                    value: params.type
-                }
-            ],
-            options: [
-                {
-                    text: 'Select Product',
-                    value: ''
-                }
-            ]
+            attributes: select__attr_,
+            options: default_options,
+            value: default_value
         }
     );
 
@@ -807,7 +1065,10 @@ function wcdr_create_include_exclude_list(params){
     parent.appendChild(el_include);
     jQuery(wcdr_rule_canvas).append(parent);
     wcdr_create_conditions(parent);
-    wcdr_init_select2('.wcdr_product_list');
+    wcdr_init_select2({
+        el: '.'+field_list_cass,
+        action: list_action
+    });
     return parent;
 }
 
@@ -819,6 +1080,10 @@ function wcdr_unique_name()
 function wcdr_load_saved_rules()
 {
     var wcdr_get_saved_rules = jQuery('#wcdr_saved_rules_container').text();
+
+    if(!wcdr_get_saved_rules)
+        return;
+
     wcdr_get_saved_rules = JSON.parse(wcdr_get_saved_rules);
 
     var condition_holder = [];
@@ -827,7 +1092,10 @@ function wcdr_load_saved_rules()
         var type = x_.split('-');
         if(type.length > 0){
 
-            if(type[0] == 'include' || type[0] == 'exclude'){
+            if( type[0] == 'include' || 
+                type[0] == 'exclude' ||
+                type[0] == 'had_purchased_product'
+            ){
                 
                 var product_list = [];
                 if(wcdr_get_saved_rules[x_].length > 0){
@@ -852,6 +1120,8 @@ function wcdr_load_saved_rules()
 
             }else if(type[0] != 'condition'){
                 wcdr_add_rules(type[0], wcdr_get_saved_rules[x_]);
+            }else if(type[0] == 'metas' || type[0] == 'url_param'){
+
             }else{
                 condition_holder.push(wcdr_get_saved_rules[x_]);
             }
@@ -870,6 +1140,7 @@ function wcdr_assign_saved_conditions(conditions)
         jQuery(this).val(conditions[index]);
     });
 }
+
 
 function wcdr_add_tooltip(args = null){
     if(!args)

@@ -1,0 +1,365 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Codecorun - WooCommerce Discount Rules Pro\n"
+"POT-Creation-Date: 2022-01-18 18:27+0800\n"
+"PO-Revision-Date: 2022-01-18 18:26+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: codecorun-cdr-plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/includes/codecorun-cdr-admin-class.php:84
+msgid "Discount Rules"
+msgstr ""
+
+#: admin/includes/codecorun-cdr-admin-class.php:306
+#: admin/includes/codecorun-cdr-admin-class.php:307
+msgid "Discount Rules Notification"
+msgstr ""
+
+#: admin/templates/panel-html.php:7
+msgid "Select Rule"
+msgstr ""
+
+#: admin/templates/panel-html.php:33
+msgid "No rules available"
+msgstr ""
+
+#: admin/templates/panel-html.php:44
+msgid "Codecorun - Coupon Discount Rules &copy; "
+msgstr ""
+
+#: admin/templates/panel-html.php:48 admin/templates/panel-marketing.php:11
+msgid "Support"
+msgstr ""
+
+#: admin/templates/panel-html.php:49 admin/templates/panel-marketing.php:10
+msgid "Documentation"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:20
+msgid "Enable discount notification when applied"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:23
+msgid "Message"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:42
+msgid ""
+"To display all applied coupon description add the "
+"[codecorun_wcdr_applied_codes] in your notification message."
+msgstr ""
+
+#: admin/templates/panel-marketing.php:51
+msgid "Center"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:57
+msgid "Top"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:63
+msgid "Bottom"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:70
+msgid "Custom CSS"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:74
+msgid "Save changes"
+msgstr ""
+
+#: admin/templates/panel-marketing.php:83
+msgid "Codecorun - Woocommerce Discount Rules &copy; "
+msgstr ""
+
+#: codecorun-cdr-plugin.php:31
+msgid "This plugin requires woocommerce installation"
+msgstr ""
+
+#: codecorun-cdr-plugin.php:32
+msgid "Woocommerce plugin is missing"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:70
+#: includes/codecorun-cdr-common-class.php:103
+msgid "Date"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:71
+#: includes/codecorun-cdr-common-class.php:104
+msgid "Date Range"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:72
+msgid "Include Product(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:73
+msgid "Exclude Product(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:74
+#: includes/codecorun-cdr-common-class.php:111
+msgid "Number of item(s) in cart"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:75
+msgid "Total Amount"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:78
+msgid "Include Category"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:79
+msgid "Exclude Category"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:80
+msgid "Had Purchased Item(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:81
+msgid "User had number of previous order(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:82
+msgid "User have meta value(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:83
+msgid "User have role(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:84
+#: includes/codecorun-cdr-common-class.php:137
+msgid "URL have parameter(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:105
+msgid "From"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:106
+#: includes/codecorun-cdr-common-class.php:107
+msgid "Include"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:108
+msgid "Exclude"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:109
+msgid "Product"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:110
+msgid "Select Product"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:112
+msgid "Total amount in the cart"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:113
+msgid "Or"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:114
+msgid "And"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:115
+msgid "Condition"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:116
+msgid "Are you sure you want to remove this rule?"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:117
+msgid "Are you sure you want to remove this product?"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:118
+msgid "Remove"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:119
+msgid "Less than or equal"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:120
+msgid "Greater than or equal"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:121
+msgid "Equal"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:122
+msgid "Less than"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:123
+msgid "Category"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:124
+msgid "Select Category"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:125
+msgid "User (n)th order"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:126
+msgid "Number of previous orders"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:127
+msgid "User has meta"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:128
+msgid "User has role"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:129
+msgid "URL as parameter(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:130
+msgid "Had Purchased"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:131
+msgid "Item(s)"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:132
+msgid "Select Role"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:133
+msgid "Meta Key"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:134
+msgid "Meta Value"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:135
+msgid "User have meta values"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:136
+msgid "Add"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:138
+msgid "Parameter key"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:139
+msgid "Parameter value"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:140
+msgid "Date when the coupon can be applied"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:141
+msgid "Duration of the date when the coupon can be applied"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:142
+msgid "Coupon will apply when product(s) IN the cart"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:143
+msgid "Coupon will apply when product(s) NOT IN the cart"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:144
+msgid ""
+"Coupon will apply if the number is equal to number of product(s) in cart"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:145
+msgid "Coupon will apply if the number is equal to the total amount in cart"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:146
+msgid ""
+"Coupon will apply if the product(s) inside the cart are belongs to selected "
+"categories"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:147
+msgid ""
+"Coupon will apply if the product(s) inside the cart are NOT belongs to "
+"selected categories"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:148
+msgid "Coupon will apply if the user had number(s) of orders"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:149
+msgid "Coupon will apply if the user have the meta values"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:150
+msgid "Coupon will apply if the user have the selected roles"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:151
+msgid "Coupon will apply if the URL the have parameters"
+msgstr ""
+
+#: includes/codecorun-cdr-common-class.php:152
+msgid "Coupon will apply if the user had purchased the selected item(s)"
+msgstr ""
+
+#: templates/notification.php:7
+msgid "Close"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Codecorun - WooCommerce Discount Rules Pro"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://codecorun.com/plugins/woocommerce-coupon-discount-rules/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"A WooCommerce coupon extension plugin that will allow you to set single or "
+"multiple rules with \"AND\" and \"OR\" conditional operation."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Codecorun"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://codecorun.com"
+msgstr ""

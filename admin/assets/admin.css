@@ -15,10 +15,10 @@
 }
 .wcdr__rule_con:last-child{
     border-bottom: 0;
-    padding-bottom: 0;
+    padding-bottom: 20px;
 }
 .wcdr__rule_con{
-    border-bottom: 1px solid #c3c4c7;
+    border-bottom: 1px solid #c3c4c7 !important;
 }
 
 .wcdr__rule_con label{
@@ -51,6 +51,10 @@
     margin-bottom: 5px !important;
 }
 
+.wcdr__rule_con table{
+    margin-top: 10px;
+}
+
 .wcdr_rule_condition{
     position: absolute;
     margin-top: -40px;
@@ -80,6 +84,9 @@ a.wcdr_condition_remove_field{
 .wcdr_generated_list tr:last-child td{
     border-bottom: 0;
 }
+.wcdr_generated_list tr td:last-child{
+    text-align: right;
+}
 .wcdr_generated_list tr:nth-child(even){
     background-color: #f2f2f2;
 }
@@ -101,6 +108,133 @@ a.wcdr_condition_remove_field{
     height: 0;
     width: 0;
 }
+.wcdr_metas_fields_wrapper{
+    padding: 10px 0;
+}
+.wcdr__rule_con_inline_text{
+    width: 100% !important;
+}
+
+.wcdr_inlie_input_table tr td:last-child span{
+    display: inline-block;
+    margin: 0 3px;
+}
+
+.wcdr_inlie_input_table tr td:last-child span.button{
+    margin: 0 !important;
+}
+
+.codecorun_layout_corner{
+    position: relative;
+    display: block;
+}
+
+.codecorun_layout_corner .codecorun_layout_canvas{
+    position: relative;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 5%;
+}
+
+.codecorun_marketing_tab{
+    margin-top: 0;
+}
+
+.codecorun_marketing_tab li{
+    display: block;
+    padding: 12px 0;
+    
+    margin: 0 !important;
+    cursor: pointer;
+    color: #666;
+}
+.codecorun_marketing_tab li.active{
+    font-weight: 800;
+ 
+    color: initial;
+}
+
+.codecorun_layout_canvas table thead td{
+    padding-bottom: 15px;
+}
+
+.wcdr_noti_field{
+    margin: 15px 0;
+}
+
+.wcdr_noti_pos_table tr td{
+    padding: 10px;
+    text-align: center;
+}
+
+.wcdr_noti_pos_table .wcdr_noti_pos{
+    display: block;
+    height: 70px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    position: relative;
+}
+
+.wcdr_noti_pos.top span{
+    position: absolute;
+    top: 0;
+    height: 20px;
+    left: 0;
+    right: 0;
+    background-color: #CCC;
+}
+
+.wcdr_noti_pos.left span{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    left: 0;
+    background-color: #CCC;
+}
+
+
+.wcdr_noti_pos.right span{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    right: 0;
+    background-color: #CCC;
+}
+
+.wcdr_noti_pos.bottom span{
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #CCC;
+}
+
+.wcdr_noti_pos.center span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 30px;
+    width: 50px;
+    background-color: #CCC;
+}
+
+.wcdr_noti_pos.active{
+    border-color: green;
+}
+.wcdr_noti_pos.active span{
+    background-color: green;
+}
+
+.wcdr_noti_field .CodeMirror{
+    border: 1px solid #CCC;
+}
 
 .wcdr_tooltip{
     position: relative;
@@ -109,16 +243,16 @@ a.wcdr_condition_remove_field{
 }
 .wcdr_tooltip i{
     position: absolute;
-    font-size: 12px;
+    font-size: 11px;
     font-style: normal;
     z-index: 10;
     width: 100px;
     background: #666;
     color: white;
     padding: 10px;
-    line-height: 12px;
+    line-height: 13px;
     border-radius: 5px;
-    font-family: auto;
+    font-family: arial;
     top: 50%;
     transform: translateY(-50%);
     display: none;
