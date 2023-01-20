@@ -1100,7 +1100,7 @@ function wcdr_load_saved_rules()
                 var product_list = [];
                 if(wcdr_get_saved_rules[x_].length > 0){
                     for(var y in wcdr_get_saved_rules[x_]){
-                        var product_ = wcdr_get_saved_rules[x_][y].split('-');
+                        var product_ = wcdr_get_saved_rules[x_][y].split(/-(.*)/s);
                         product_list.push(
                             {
                                 product_id: product_[0],
